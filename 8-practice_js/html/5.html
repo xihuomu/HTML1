@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .nav{
+            width: 200px;
+            height: 50px;
+            background-color: aqua;
+            list-style: none;
+        }
+        .nav>li{
+            width: 50px;
+            line-height: 50px;
+            background-color: red;
+            text-align: center;
+            position: relative;
+            float: left;
+        }
+        .nav-show{
+            list-style: none;
+            position: absolute;
+            display: none;
+            
+        }
+        .nav-show>li{
+            background-color: royalblue;
+            width: 50px;
+            line-height: 40px;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- <div class="one">
+        <ul >
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div> -->
+
+    <div>
+        <ul class="nav">
+            <li>
+                <a>1</a>
+                <ul class="nav-show">
+                    <li>11</li>
+                    <li>11</li>
+                    <li>11</li>
+                </ul>
+            </li>
+            <li>
+                <a>2</a>
+                <ul class="nav-show">
+                    <li>22</li>
+                    <li>22</li>
+                    <li>22</li>
+                </ul>
+            </li>
+            <li>
+                <a>3</a>
+                <ul class="nav-show">
+                    <li>33</li>
+                    <li>33</li>
+                    <li>33</li>
+                </ul>
+            </li>
+            <li>
+                <a>4</a>
+                <ul class="nav-show">
+                    <li>44</li>
+                    <li>44</li>
+                    <li>44</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+<script>
+    // let ul_one =document.querySelector('ul');
+    // let lis =document.querySelectorAll('li')
+    // console.log(lis);
+    // lis.parentNode;
+    // console.log(lis.parentNode)
+    // console.log(ul_one);
+    // console.log(ul_one.childNodes);
+    // //实际一般使用children,childNodes会打印出文本换行空格
+    // console.log(ul_one.children);
+    // //打印每一个子元素 
+    // console.log(ul_one.children[0]);
+    // console.log(ul_one.children[ul_one.children.length -1]);
+    // console.log(ul_one.children[5]);
+    let lis =document.querySelector('.nav').children;
+    console.log(lis)
+    for(let i=0;i<lis.length;i++){
+        lis[i].onmouseover=function(){
+            // onmouseover移动onmouseout移出
+            this.children[1].style.display='block';
+            for(i=0;i<lis.length;i++){
+                lis[i].style.backgroundColor='';
+            }
+            this.style.backgroundColor='blue';
+        }
+        lis[i].onmouseout=function(){
+            this.children[1].style.display='none';
+            for(i=0;i<lis.length;i++){
+                lis[i].style.backgroundColor='';
+            }
+        }
+    }
+</script>
+</body>
+</html>

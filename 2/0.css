@@ -1,0 +1,20 @@
+.html{
+
+    transition: all;
+    /* 动画 */
+    transform: none;
+    /* 2D */
+}
+.html div:nth-child(1){
+    width: 10px;
+}
+/* 第一个子div */
+/* add even 奇偶 */
+.html div:nth-child(2){
+    width: 10px;
+}
+.html div:nth-child(3){
+    width: 10px;
+}
+
+/* viewport */

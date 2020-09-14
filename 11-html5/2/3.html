@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <canvas id="can" width="1000" height="500" style="border: 1px solid gray;">
+
+        </canvas>
+    </div>
+</body>
+<script>
+    let ctx = document.querySelector("#can").getContext("2d");
+
+    //创建数组存储价格
+    nums1 = [0,40,120,40,70,250];
+    nums2 = [90,150,10,140,230,0];
+
+    //绘制表格
+    for(let i = 0;i < 7;i++){
+        ctx.moveTo(50,50*i+50);
+        ctx.lineTo(550,50*i+50);
+    }
+    for(let i = 0;i < 6;i++){
+        ctx.moveTo(100*i+50,50);
+        ctx.lineTo(100*i+50,350);
+    }
+    ctx.lineWidth = 1;
+    ctx.strokStyle = "black";
+    ctx.stroke();
+
+    //填写表格旁边的数字、月份
+    ctx.save();
+    ctx.font = "15px Arial";
+    ctx.fillText("万元/m^2",25,25);
+    ctx.restore();
+    for(let i = 0;i < 7;i++){
+        ctx.save();
+        ctx.font = "15px Arial";
+        ctx.fillText(50*i,20,350-50*i+5);
+        ctx.restore();
+    }
+    for(let i=0;i<6;i++){
+        if(i<3){
+            ctx.save();  
+            ctx.font="15px Arial";
+            ctx.textAlign='center';
+            ctx.fillText(10+i+"月",50+100*i,380);
+            ctx.restore();
+        }else{
+            ctx.save();  
+            ctx.font="15px Arial";
+            ctx.textAlign='center';
+            ctx.fillText(i-3+"月",50+100*i,380);
+            ctx.restore();
+        }
+    }
+
+    //绘制折线
+    function drawLine(num,color){//num数组color折线颜色
+        for(let i = 0;i < num.length-1;i++){
+            //开始位置
+            let numX1 = i * 100 + 50 ;
+            let numY1 = 350 - num[i];
+            //结束位置
+            let numX2 = (i+1) * 100 + 50 ;
+            let numY2 = 350 - num[i+1];
+            ctx.beginPath();
+            ctx.moveTo(numX1,numY1);
+            ctx.lineTo(numX2,numY2);
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = color;
+            ctx.closePath();
+            ctx.stroke();
+        }
+    }
+    //折线点和点上的数据
+    function drawBlock(num,color){
+        for(let i = 0;i < num.length;i++){
+            let numX = i * 100 + 50 ;
+            let numY = 350 - num[i];
+            ctx.beginPath();
+            ctx.arc(numX,numY,4,0,Math.PI*2)
+            ctx.fillStyle=color;
+            ctx.fill();
+            ctx.font = "15px Arial";
+            ctx.fillText(num[i],numX,numY-10);
+            ctx.fillStyle='white';
+            ctx.textAlign='center';
+            ctx.fill();
+            ctx.closePath();
+            ctx.stroke();
+        }
+    }
+
+
+
+
+
+    drawLine(nums1,"red");
+    drawLine(nums2,"blue");
+    drawBlock(nums1,"red");
+    drawBlock(nums2,"blue");
+</script>
+</html>

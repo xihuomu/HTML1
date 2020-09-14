@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one_div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            font-size: 20px;
+        }
+        .two_div{
+            width: 200px;
+            height: 200px;
+            background-color: blueviolet;
+            margin-top: 100px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="one_div"> 
+        666
+    </div>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+    <script>
+        let one = document.querySelector('div');
+        one.onclick = function(){
+            // this.className = 'two_div';
+            this.className = 'one_div two_div';
+        }
+        let btn = document.getElementsByTagName('button');
+        for ( let i=0;i<btn.length;i++){
+            btn[i].onclick = function(){
+                for(i=0;i<btn.length;i++){
+                    btn[i].style.backgroundColor='';
+                }
+                this.style.backgroundColor='pink';
+            }
+        }
+    </script>
+</body>
+</html>

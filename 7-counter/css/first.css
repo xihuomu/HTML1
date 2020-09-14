@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.all{
+    width: 300px;
+    
+}
+.counter{
+    padding: 10px 20px;
+    height: 210px;
+    background-color: #999999;
+    border: 1px solid#ffff;
+}
+.counter_top{
+    font-size: 16px;
+}
+.counter>input{
+    width: 100%;
+}
+.counter_center{
+    width: 100%;
+    height: 145px;
+    border: 1px solid#ffff;
+}
+.counter_center>ul{
+    list-style-type: none;
+    float: left;
+}
+.counter_center ul>li{
+    margin: 12px 6px;
+    width: 39px;
+    background-color: white;
+    text-align: center;
+}

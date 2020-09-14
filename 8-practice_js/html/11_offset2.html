@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .dl{
+            position: absolute;
+            text-align: center;
+            line-height: 50px;
+            width: 100px;
+            background-color: brown;
+            z-index: 99;
+            /* margin: auto;
+            left: 0;
+            top: 0;
+            right: 0; */
+            margin-right: -50px;
+            right: 50%;
+        }
+        .all{
+            width: 100%;
+            height: 900px;
+            background-color: aqua;
+            position: relative;
+            display: none;
+            z-index: 1;
+        }
+        .dl_div{
+            position: relative;
+            width: 400px;
+            height: 200px;
+            margin: auto;
+            background-color: aquamarine;
+            top: 100px;
+        }
+        .top{
+            width: 400px;
+            position: absolute;
+            line-height: 50px;
+            background-color: blue;
+            text-align: center;
+        }
+        .top_one{
+            position: absolute;
+            width: 25px;
+            line-height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            right: -10px;
+            top: -10px;
+
+            background-color: chartreuse;
+        }
+        .center{
+            position: absolute;
+            top: 50px;
+            line-height: 100px;
+        }
+        .buttom{
+            position: absolute;
+            line-height: 50px;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="dl">
+        登录
+    </div>
+    <div class="all">
+        <div class="dl_div">
+            <div class="top">登录框</div><div class="top_one">X</div>
+            <div class="center">111</div>
+            <div class="buttom">111</div>
+        </div>
+    </div>
+    <script>
+        let dl = document.querySelector('.dl')
+        let dl_div = document.querySelector('.dl_div');
+        let tops = document.querySelector('.top');
+        let all = document.querySelector('.all')
+        let top_one = document.querySelector('.top_one')
+        dl.addEventListener('click', function(){
+            all.style.display = 'block';
+        })
+        top_one.addEventListener('click', function(){
+            all.style.display = 'none';
+        })
+        tops.addEventListener('mousedown',function(e){
+            let x = e.pageX - tops.offsetLeft;
+            let y = e.pageY - tops.offsetTop-100;
+            document.addEventListener('mousemove',move)
+            function move(e){
+                dl_div.style.left = e.pageX - x + 'px' ;
+                dl_div.style.top = e.pageY - y + 'px' ;
+            }
+            document.addEventListener('mouseup',function(){
+                document.removeEventListener('mousemove',move);
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 导航的标签页 -->
+        <ul class="nav nav-tabs"> 
+            <li class="active"><a href="#num1" data-toggle="tab">首页</a></li>
+            <li><a href="#num2" data-toggle="tab">活动</a></li>
+            <li><a href="#num3" data-toggle="tab">价格</a></li>
+            <li><a href="#num4" data-toggle="tab">其他</a></li>
+        </ul>
+        <ul class="nav nav-pills"> 
+            <li class="active"><a href="#num1">首页</a></li>
+            <li><a href="#num2">活动</a></li>
+            <li><a href="#num3">价格</a></li>
+            <li><a href="#num4">其他</a></li>
+        </ul>
+        <ul class="tab-content">
+            <li class="tab-pane fade in active" id="num1">
+                <p>首页的内容</p>
+            </li>
+            <li class="tab-pane fade " id="num2">
+                <p>活动的内容</p>
+            </li>
+            <li class="tab-pane fade " id="num3">
+                <p>价格的内容</p>
+            </li>
+            <li class="tab-pane fade " id="num4">
+                <p>其他的内容</p>
+            </li>
+        </ul>
+        <br>
+    </div>
+</body>
+<script>
+    $(".nav a").click(function(){
+        $(this).tab("show")
+    })
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+    <style type="text/css">
+        ul{
+            width: 200px;
+            list-style: none;
+        }
+        ul li{
+            border: 1px solid #000;
+            padding-left: 10px;
+            line-height: 30px;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            //append   将元素追加该元素的内部   最后一名
+            //appendTo   将该元素追加至元素的内部
+            //prepend   前置
+            var $newli=$("<li>我是刚来的</li>");
+           // $("ul").append($newli);
+           // $("ul").prepend($newli);
+
+            //$newli.appendTo("ul");
+            //$newli.prependTo("ul");
+
+            //after  插入到当前元素的后面
+            //before  插入到当前元素的前面
+            //insertafter  当前元素插入到元素的后面
+            //insertbefore  当前元素插入到元素的前面
+
+            //$("ul").after($newli);
+            //$("ul").before($newli);
+
+            //$("ul li:eq(2)").before($newli);
+
+            //移除节点  remove();    empty();   区别
+           // var $outli=$("ul li:eq(2)").detach();
+            //$("ul").prepend($outli);
+
+            //替换节点
+            //$("ul li:eq(2)").replaceWith($newli);
+           // $newli.replaceAll("ul li:eq(1)");
+
+            //复制节点
+//            $("ul li:eq(1)").click(function(){
+//              $(this).clone(false).appendTo("ul");
+//            });
+
+            //获取属性值
+//            $("img").click(function(){
+//                alert($(this).attr("alt"));
+//            });
+            //设置属性值
+           // $("img").attr({"width":"800px","height":"200px"});
+            //删除属性值
+            //$("img").removeAttr("alt");
+
+            //获取子元素
+            var $son=$("#b_box").children();
+            let $son2=$($son[1]).children().length;
+            alert($son2);
+            $("ul li:not(:last)").css("border-bottom","none");
+        });
+    </script>
+</head>
+<body>
+<div id="b_box">
+    <h2>我是一个标题</h2>
+    <ul>
+        <li>我是<a>第一</a>名</li>
+        <li>我是第二名</li>
+        <li>我是第三名</li>
+        <li>我是第四名</li>
+    </ul>
+    <img src="images/3.jpg"  width="300px" height="300px"/>
+</div>
+</body>
+</html>

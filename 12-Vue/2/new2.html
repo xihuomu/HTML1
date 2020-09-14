@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js" type="text/jscript"></script>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<!-- 1.便利对象 value:表示对象的属性值 key:表示兑现的属性名 index:表示当前对象的索引-->
+				<li v-for="(value,key,index) in animal">
+					{{index}}-----{{key}}-----{{value}}
+				</li>		
+				<br>	
+				<!-- 2.遍历数组 -->	
+				<li v-for="(item,index) in animals">
+					{{index}}-----{{item.name}}---------{{item.type}}------{{item.age}}--{{item.hobby}}
+				</li>
+				<br>
+				<li v-for="(item,index) in animals">
+					<span v-for="(childValue,index1) in item.hobby">
+						{{index}}------{{index1}}---{{childValue}}
+					</span>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script>
+	var box=new Vue({
+		el:'#box',
+		data:{
+			animal:{
+				name:"小黑",
+				type:"dog",
+				age:3
+			},
+			animals:[
+				{name:"小白",type:"dog",age:99,hobby:['11','22','33']},
+				{name:"喵喵",type:"cat",age:66,hobby:['111','222','333']}
+				]
+		},
+		methods:{
+			
+		}
+	})
+</script>

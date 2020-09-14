@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="js/vue.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 300px;
+			}
+			h3{
+				background-color: darkred;
+				padding: 10px;
+				color: gray;
+			}
+			ul{
+				list-style: none;
+				line-height: 30px;
+			}
+			li{
+				background-color: red;
+			}
+			li:hover{
+				background-color: white;
+			}
+			a{
+				padding: 0 10px;
+				color: gray;
+				text-decoration: none;
+			}
+			li>img{
+				float: right;
+				height: 20px;
+				padding: 4px 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h3>全部商品分类</h3>
+			<ul>
+				<li v-for="(item,index) in Arrs">
+					<a href="#">{{item.name1}}</a>
+					<a href="#">{{item.name2}}</a>
+					<a href="#">{{item.name3}}</a>
+					<img v-bind:src="imgsrc">
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:".box",
+			data:{
+				imgsrc:"img/bg.png",
+				Arrs:[
+					{name1:"家用电器"},
+					{name1:"手机",name2:"数码",name3:"相机"},
+					{name1:"电脑",name2:"办公"},
+					{name1:"手机",name2:"数码",name3:"相机"},
+					{name1:"手机",name2:"数码",name3:"相机"},
+					{name1:"手机",name2:"数码",name3:"相机"},
+				]
+			},
+			methods:{
+				
+				
+			}
+		})
+	</script>
+</html>

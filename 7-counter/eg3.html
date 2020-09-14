@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<table border="1" bgcolor="darkgray" style="text-align: center;">
+			<tr>
+				<td colspan="5">
+					<div id="tip"></div>
+					<input type="text" id="text_input" data_sum/>
+				</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>8</td>
+				<td>9</td>
+				<td>Back</td>
+				<td>C</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>*</td>
+				<td>/</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>+</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>0</td>
+				<td>00</td>
+				<td>.</td>
+				<td>%</td>
+				<td>=</td>
+			</tr>
+		</table>
+		<script>
+			let td_element = document.getElementsByTagName("td");
+			let first = '';
+			let two = '';
+			let flag = true;
+			let hao ;
+			for(let i = 1 ; i < td_element.length ; i++){
+				td_element[i].onclick = function(){
+					//区分数字和运算符；
+					if(this.innerHTML == "C"){
+						first = "";
+						two = "";
+						document.getElementById("text_input").value = "";
+						document.getElementById("tip").innerHTML = "";
+						return;
+					}
+					if(this.innerHTML == "*" || this.innerHTML == "-" || this.innerHTML == "+" || this.innerHTML == "/"){
+						hao = this.innerHTML;
+						document.getElementById("text_input").value = "";
+						document.getElementById("tip").innerHTML = first;
+						flag = false;
+						return;
+					}
+					
+					if (this.innerHTML == "="){
+						first = parseFloat(first);
+						two = parseFloat(two);
+						if(hao == "*"){
+							document.getElementById("text_input").value = first * two;
+						}else if(hao == "-"){
+							document.getElementById("text_input").value = first - two;
+						}else if(hao == "+"){
+							document.getElementById("text_input").value = first + two;
+						}else if(hao == "/"){
+							document.getElementById("text_input").value = first / two;
+						}
+						document.getElementById("tip").innerHTML = "";
+						first = "";
+						two = "";
+						return;
+					}
+					if(!flag){
+						two = two + this.innerHTML;
+						console.log(two);
+						document.getElementById("text_input").value = two;
+					}else{
+						first = first + this.innerHTML;
+						console.log(first);
+						document.getElementById("text_input").value = first;
+					}
+					// first = first + this.innerHTML;
+					// if(*-+/){
+						
+					// }
+					// let two += this.innerHTML;
+					
+					// if(=){
+					// 	td[0].value = first *-=/ two
+					// }
+				}
+			}
+		</script>
+	</body>
+</html>

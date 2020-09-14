@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            text-decoration: none;
+        }
+        #center{
+            margin:  0 auto;
+            width: 400px;
+            height: 200px;
+            position: relative;
+        }
+        .icon-left{
+            position: absolute;
+            top:45%;
+            left: 0;
+        }
+        .icon-right{
+            position: absolute;
+            top:45%;
+            right: 0;
+        }
+        .yuan-ul{
+            list-style: none;
+            position: absolute;
+            bottom: 0;
+        }
+        li{
+            float: left;
+            /* background-color: aqua; */
+        }
+    </style>
+</head>
+<body>
+    <div id='center'>
+        <img id="myid" src="../img/a1.jpg" width="400px" height="200px">
+        <i class="icon-left">
+            <img src="../img/b2.jpg" width="50px" height="50px">
+        </i>
+        <i class="icon-right">
+            <img src="../img/b1.jpg" width="50px" height="50px">
+        </i>
+        <ul class="yuan-ul">
+            <li>⚪</li>
+            <li>⚪</li> 
+            <li>⚪</li>
+            <li>⚪</li>
+        </ul>
+    </div>
+    <script>
+        let myid = document.querySelector('#myid');
+        let num =1 ;
+        let myleft = document.querySelector('.icon-left');
+        let myright = document.querySelector('.icon-right');
+        let myli = document.querySelector('.yuan-ul').children;
+        console.log(myli);
+        setInterval(function(){
+            num++;
+            if(num==5){
+                num=1;
+            }
+            myid.src="../img/a"+num+".jpg";
+        },2000)
+        myleft.addEventListener('click',function(){
+            num--;
+            if(num<=0){
+                num=4;
+            }
+            myid.src="../img/a"+num+".jpg";
+        })
+        myright.addEventListener('click',function(){
+            num++;
+            if(num>=5){
+                num=1;
+            }
+            myid.src="../img/a"+num+".jpg";
+        })
+        for(let i = 0 ; i < myli.length; i++){
+            myli[i].addEventListener('click',function(){
+                num = i + 1 ;
+                myid.src="../img/a"+num+".jpg";
+            })
+        }
+        
+    </script>
+</body>
+</html>

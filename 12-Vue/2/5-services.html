@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="js/vue.js"></script>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.box{
+				width: 400px;
+				margin: 0 auto;
+				background-color: #0077AA;
+				padding: 50px 50px;
+			}
+			.right{
+				float: right;
+			}
+			h1{
+				text-align: center;
+			}
+			.box>span{
+				margin: 20px 0;
+			}
+			ul{
+				list-style: none;
+				line-height: 75px;
+				font-size: 25px;
+				border-bottom: 1px solid gray;
+			}
+			li{
+				background-color: #008000;
+				padding: 0 20px;
+				margin: 5px;
+			}
+			.active{
+			    background-color: darkseagreen;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h1>Services</h1>
+			<ul>
+				<li :class="{active:list[index].isActive}"
+					:key="index"
+					@click="change(index)"
+					v-for="(item,index) in list">
+					<span>{{item.name}}</span>
+					<span class="right">{{item.price}}</span>
+				</li>
+			</ul>
+			Total:
+			<span>{{changePrice}}</span>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:".box",
+			data:{
+				
+				list:[
+					{
+						name:'WebDelopment',
+						price:3000,
+						isActive:false
+					},
+					{
+						name:'Pythoin',
+						price:1000,
+						isActive:false
+					},
+					{
+						name:'Java',
+						price:2000,
+						isActive:false
+					},
+					{
+						name:'Go',
+						price:2200,
+						isActive:false
+					},
+				],
+				allPrice:0,
+				changePrice:0
+			},
+			methods:{
+				change(index){
+					this.list[index].isActive=!this.list[index].isActive
+					this.list.forEach(v=>{
+						if(v.isActive){
+							this.allPrice+=v.price
+						}
+					})
+					this.changePrice=this.allPrice
+					this.allPrice=0
+				}
+			}
+		})
+	</script>
+</html>

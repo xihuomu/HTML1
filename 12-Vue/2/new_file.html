@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+	<style>
+		.mydiv{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+		.parent{
+			width: 100px;
+			height: 100px;
+			background-color: yellow;
+		}
+		.son{
+			width: 50px;
+			height: 50px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+    <div id="box">
+		<!-- <button type="button" v-on:click="btnclick" v-if="showBtn">click me</button>
+		<h1 v-if="isshow">{{zou}}</h1>
+		<h1 v-else>666</h1>
+		<h1 v-show="isshow">{{zou}}</h1> --> 
+		<button v-on:click="fn">切换</button> 
+		<button @click="fn">切换</button>
+		<!-- v-on:click="fn"和@click="fn"相等 -->
+		<div class="mydiv" v-show="isdivshow">
+			内容
+		</div>
+		<button @click="fn1('6666')">打印</button>
+		<br>
+		<!-- 在子元素click后加.stop或者在父元素后加.self阻止事件的冒泡 -->
+		<div class="parent" @click.self="divfn1('钟琼')"> 
+			钟琼
+			<div class="son" @click="divfn1('上汝父')">  
+				上汝父
+			</div>
+		</div>
+		<br>
+		
+		账号：<input type="text" v-model="text">
+		<h1>{{text}}</h1>
+    </div>
+    <script>
+        let box = new Vue({
+            el:'#box',
+            data:{
+				// showBtn:true,
+				// zou:"钟琼",
+				// one:{name:"钟琼",age:"18"},
+				// isshow:false,
+				isdivshow:true,
+				text:"我是初始值"
+            },
+			methods:{
+				fn:function(){
+					this.isdivshow=!this.isdivshow
+				},
+				fn1:function(text){
+					console.log(text)
+				},
+				divfn1:function(text){
+					console.log(text)
+				},
+				divfn2:function(text){
+					console.log(text)
+				}
+			}
+        })
+    </script>
+</body>
+</html>

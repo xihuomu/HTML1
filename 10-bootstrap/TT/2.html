@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <style>
+        .one{
+            margin-top: 10px;
+            background-color: #ccc;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 组件 -->
+    <div class="container">
+        <!-- 首页 -->
+        <div class="row text-center one" style="margin-top: 51px;">
+            <div class="col-xs-3">
+                <span class="glyphicon glyphicon-home"></span>
+                <span>首页</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="glyphicon glyphicon-piggy-bank"></span>
+                <span>服务</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="glyphicon glyphicon-apple"></span>
+                <span>商品</span>
+            </div>
+            <div class="col-xs-3">
+                <span class="glyphicon glyphicon-user"></span>
+                <span>个人</span>
+            </div>
+        </div>
+
+
+        <!-- 下拉菜单 -->
+        <div class="dropdown">
+            <button data-toggle="dropdown" class="btn btn-primary">
+                菜单
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a>金额</a></li>
+                <li><a>订单</a></li>
+                <li class="divider"></li>
+                <li><a>流量</a></li>
+                <li class="active"><a>信息</a></li>
+            </ul>
+        </div>
+        <!-- 分离式下拉菜单 -->
+        <div class="btn-group" style="padding-top: 100px;">
+            <button class="btn btn-danger">菜单</button>
+            <button data-toggle="dropdown" class="btn btn-danger">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a>金额</a></li>
+                <li><a>订单</a></li>
+                <li class="divider"></li>
+                <li><a>流量</a></li>
+                <li class="active"><a>信息</a></li>
+            </ul>
+        </div>
+        <br>
+        
+        <!-- 输入框 -->
+        <div class="input-group">
+            <span class="input-group-addon">用户</span>
+            <input type="text" placeholder="请输入用户名" class="form-control">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">密码</span>
+            <input type="password" placeholder="请输入密码" class="form-control">
+        </div>
+        <br>
+        <div class="input-group">
+            <input type="text"class="form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">百度一下</button>
+            </span>
+        </div>
+        <br>
+        <!-- 导航nav nav-tabs-->
+        <!-- 选项卡 -->
+        <ul class="nav nav-tabs">  
+            <li class="active"><a>充值</a></li>
+            <li><a>旅游</a></li>
+            <li><a>服务</a></li>
+            <li><a>我的</a></li>
+        </ul><br>
+        <!-- 胶囊式 nav-pills-->
+        <ul class="nav nav-pills">  
+            <li class="active"><a>充值</a></li>
+            <li><a>旅游</a></li>
+            <li><a>服务</a></li>
+            <li><a>我的</a></li>
+        </ul>
+        <br>
+        <!-- 自适应 nav-justified-->
+        <ul class="nav nav-pills nav-justified">  
+            <li class="active"><a>充值</a></li>
+            <li><a>旅游</a></li>
+            <li><a>服务</a></li>
+            <li><a>我的</a></li>
+        </ul>
+        <br>
+        <!-- 二级菜单 -->
+        <ul class="nav nav-pills nav-justified">  
+            <li class="active"><a>首页</a></li>
+            <li><a>旅游</a></li>
+            <li><a>服务</a></li>
+            <li><a>我的</a></li>
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown">
+                    其他
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a>111</a></li>
+                    <li><a>222</a></li>
+                    <li><a>333</a></li>
+                    <li><a>444</a></li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+
+        <!-- 导航条 -->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">LOGO</a>
+                <button class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-left">
+                <ul class="nav navbar-nav">
+                    <li><a>首页</a></li>
+                    <li><a>天猫</a></li>
+                    <li><a>京东</a></li>
+                    <li><a>聚划算</a></li>
+                </ul>
+            </div>
+            
+            <!-- 增加表单 -->
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="输入搜索内容">
+                </div>
+                <button type="submit" class="btn btn-primary">搜素</button>
+            </form>
+            <div class="navbar-header">
+                <span class="navbar-text">文本</span>
+                <span class="navbar-text">文本</span>
+                <span class="navbar-link navbar-text">链接</span>
+                <span class="navbar-link navbar-text">链接</span>
+                <button class="btn btn-primary navbar-btn">按钮</button>
+                <button class="btn btn-primary navbar-btn">按钮</button>
+            </div>
+        </nav>
+        <br>
+        <!-- 固定顶部navbar-fixed-top底部navbar-fixed-bottom -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">LOGO</a>
+            </div>
+        </nav>
+        <br>
+        <!-- 媒体对象 -->
+        <div class="media">
+            <div class="media-left">
+                <img src="./2/images/a1.jpg" class="media-object"> 
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">5566564444444444</h3>
+                <p>465654646hjtwIHVTworhtwaaiurt</p>
+                <small>564654</small>
+            </div>
+        </div>
+        <div class="media">
+            <div class="media-body text-right">
+                <h3 class="media-heading">5566564444444444</h3>
+                <p>465654646hjtwIHVTworhiageaiurt</p>
+                <small>564654</small>
+            </div>
+            <div class="media-left">
+                <img src="./2/images/a1.jpg" class="media-object">
+        </div>
+        <br>
+        <!-- 列表组 -->
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-success">
+                111
+                <span class="badge">11</span>
+            </li>
+            <li class="list-group-item">222</li>
+            <li class="list-group-item list-group-item-info">333</li>
+            <li class="list-group-item active">444</li>
+        </ul>
+        <br>
+        <!-- 多个分页效果disabled禁用 -->
+        <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+        </ul>
+        <br>
+        <!-- 上下分页 -->
+        <ul class="pager">
+            <li><a href="#">上一页</a></li>
+            <li><a href="#">下一页</a></li>
+        </ul>
+        <br>
+        <!-- 左previous右next -->
+        <ul class="pager">
+            <li class="previous"><a href="#">上一页</a></li>
+            <li class="next"><a href="#">下一页</a></li>
+        </ul>
+    </div>
+</body>
+</html>

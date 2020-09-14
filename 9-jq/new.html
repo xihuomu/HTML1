@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function(){
+            let $new1 = $("<li>?</li>");
+            // $("ul").append(new1);
+            // $("ul").after(new1); 
+            // $("ul").before(new1);
+            // $("ul li:eq(1)").replaceWith($new1);
+            $("img").click(function(){
+                alert($(this)).attr("alt");
+            });
+            $("img").attr({"width":"600px","height":"300px"});
+            $("img").removeAttr("width");
+            })
+    </script>
+</head>
+<body>
+    <h3>123</h3>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <img src="./images/store.jpg"alt="nishi"width="300px"height="600px">
+</body>
+</html>

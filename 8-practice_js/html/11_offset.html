@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .all{
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+            position: relative;
+            margin: auto;
+            top:200px;
+        }
+        .all_top{
+            width: 400px;
+            height: 200px;
+            position: absolute;
+            background-color: blue;
+        }
+        .all_buttom{
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            background-color: black;
+            top: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="all">
+        <div class="all_top">
+
+        </div>
+        <div class="all_buttom">
+
+        </div>
+    </div>
+    <script>
+        //元素偏移量 大小 属性 offset与style：offset只能读取不能赋值
+        let all = document.querySelector('.all')
+        let buttom = document.querySelector('.all_buttom')
+        console.log(buttom.offsetTop);//根据带有定位的父亲为准 如果没有定位或父亲就与body为准
+        console.log(buttom.offsetLeft);
+        console.log(buttom.offsetWidth);
+        console.log(buttom.parentNode);
+        //案例 获取鼠标在盒子里的位置
+        all.addEventListener('mousemove',function(e){
+            let x = e.pageX - this.offsetLeft;
+            let y = e.pageY - this.offsetTop;
+            this.innerHTML = '鼠标坐标是（'+x+','+y +')。';
+        })
+        
+    </script>
+</body>
+</html>

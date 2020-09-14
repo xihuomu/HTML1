@@ -1,0 +1,16 @@
+prevent
+ul:
+    list-style: none;
+li:
+    float: left;
+    display: inline;
+<link href="./css/first.css" rel="stylesheet">
+a:
+    text-decoration: none;
+cursor: pointer;鼠标指针
+1、touchstart
+当手指放在屏幕上触发。
+2、touchmove
+当手指在屏幕上滑动时，连续地触发。
+3、touchend
+当手指从屏幕上离开时触发。

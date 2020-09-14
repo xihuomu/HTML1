@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+		<button type="button" v-on:click="btnclick" v-if="showBtn">click me</button>
+		<h1>{{zou}}</h1>
+		<h2>{{one.name}}</h2>
+		<h3>{{one.age}}</h3>
+    </div>
+    <script>
+        let box = new Vue({
+            el:'#box',
+            data:{
+				showBtn:true,
+				zou:"钟琼",
+				one:{name:"钟琼",age:"18"}
+            },
+			methods:{
+				btnclick:function(){
+					console.log("钟琼")
+				}
+			}
+        })
+    </script>
+</body>
+</html>

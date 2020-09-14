@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            color: #ffffff;
+            background-color: gray;
+            line-height: 100px;
+            font-size: 25px;
+            margin-top: 2px;
+            text-align: center;
+        }
+        span{
+            color: 16px;
+            background-color: #fff;
+            color: black;
+            padding-left: 10px;
+            display: none;
+        }
+        p{
+            color: 20px;
+            background-color: #fff;
+            color: black;
+            padding-left: 10px;
+            display: none;
+        }
+    </style>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("div:first").click(function(){
+                $("span").css("display","block");
+                $("p").css("display","none");
+            })
+            $("div:last").click(function(){
+                $("p").css("display","block");
+                $(this).css("margin","0")
+                $("span").css("display","none");
+            })
+        })
+    </script>
+</head>
+<body>
+    <div>
+        林徽因简介
+    </div>
+    <span>
+        &nbsp;&nbsp;&nbsp;&nbsp;林微因，女，汉族，原名林徽音，出生于浙江杭州，祖籍福建福州。中国菩名建筑家、诗人、作家。人民英雄纪念碑和中华人民共和国国徼深化方案的设计者。<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;林徽因是建筑师梁思成的第一任妻子。三十年代初，与夫婿梁思成用现代科学方法研究方法研究中国古代建筑，成为这个学术领域的开拓者。
+    </span>
+    <div>
+        主要作品
+    </div>
+    <p>
+        《你是人间四月天》<br>
+        《宝莲灯》<br>
+        《九十九度中》<br>
+    </p>
+</body>
+</html>

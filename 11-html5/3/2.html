@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one{
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <canvas id="can" width="800" height="400" style="border: 1px solid pink;background-color: red;">
+
+        </canvas>
+    </div>
+</body>
+<script>
+    let Arr=["一等奖","二等奖","三等奖","谢谢惠顾","谢谢惠顾","谢谢惠顾","谢谢惠顾","谢谢惠顾","谢谢惠顾","谢谢惠顾"]
+    /** @type {HTMLCanvasElement} */
+    let can = document.querySelector("#can");
+    let ctx = can.getContext("2d");
+    var mousedown = false;
+
+    ctx.beginPath();
+    ctx.fillStyle="white";
+    ctx.textAlign='center';
+    ctx.font = "100px 宋体";
+    ctx.fillText(Arr[Math.floor(Math.random()*Arr.length)],400,200);
+    ctx.closePath();
+
+    // ctx.beginPath();
+    // ctx.fillStyle="gray";
+    // ctx.fillRect(0,0,800,400);
+    // ctx.fill();
+    // ctx.closePath();
+
+    // can.addEventListener('mousedown', eventDown);
+    // can.addEventListener('mouseup', eventUp);
+    // can.addEventListener('mousemove', eventMove);
+    
+    // function eventDown(e){
+    //     e.preventDefault();
+    //     mousedown=true;
+    // }
+    
+    // function eventUp(e){
+    //     e.preventDefault();
+    //     mousedown=false;
+    // }
+    // function eventMove(e){
+    // e.preventDefault();
+    // if(mousedown) {
+    //     var x = (e.clientX + document.body.scrollLeft || e.pageX) 
+    //     console.log(x);
+        
+    //     var y = (e.clientY + document.body.scrollTop || e.pageY) 
+    //     console.log(y);
+    //     ctx.beginPath();
+    //     ctx.arc(x, y, 20, 0, Math.PI * 20);
+    //     // ctx.fillStyle="red"
+    //     ctx.fill();
+    // }
+    // }
+    
+</script>
+</html>

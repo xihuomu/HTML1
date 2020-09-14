@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .one{
+        background-color: white;
+        color: black;
+    }
+</style>
+<body>
+    <div class="box">
+        <canvas id="can" width="400" height="400" style="border: 1px solid pink;">
+
+        </canvas>
+    </div>
+</body>
+<script>
+    /** @type {HTMLCanvasElement} */
+    let can = document.querySelector("#can");
+    let ctx = can.getContext("2d");
+
+    ctx.beginPath();    
+        ctx.arc(200,200,150,Math.PI*1.5,Math.PI*.5,true);
+        ctx.fillStyle="black";
+        ctx.fill();
+    ctx.closePath();
+    ctx.stroke();
+    ctx.beginPath();    
+        ctx.arc(200,200,150,Math.PI*1.5,Math.PI*.5,false)
+        ctx.fillStyle="white";
+        ctx.fill();
+    ctx.closePath();
+    ctx.stroke();
+
+    ctx.beginPath();    
+        ctx.arc(200,125,75,0,Math.PI*2,true);
+        ctx.fillStyle="white";
+        ctx.fill();
+    ctx.closePath();
+    // ctx.stroke();
+    ctx.beginPath();    
+        ctx.arc(200,125,15,0,Math.PI*2,true);
+        ctx.fillStyle="black";
+        ctx.fill();
+    ctx.closePath();
+    // ctx.stroke();
+    
+    ctx.beginPath();    
+        ctx.arc(200,275,75,0,Math.PI*2,true);
+        ctx.fillStyle="black";
+        ctx.fill();
+    ctx.closePath();
+    // ctx.stroke();
+    ctx.beginPath();    
+        ctx.arc(200,275,15,0,Math.PI*2,true);
+        ctx.fillStyle="white";
+        ctx.fill();
+    ctx.closePath();
+    // ctx.stroke();
+
+</script>
+</html>

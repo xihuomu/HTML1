@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #can{
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>钟琼</h1>
+        <canvas id="can" width="1400" height="2000">
+            
+        </canvas>
+    </div>
+</body>
+<script>
+    /** @type {HTMLCanvasElement} */
+    let can = document.querySelector("#can");
+    let ctx = can.getContext("2d");
+
+    //坐标变换
+    ctx.beginPath();
+        ctx.fillStyle="green"
+        ctx.fillRect(100,100,300,200);//填充矩形
+        ctx.save();
+            //平移
+            ctx.fillStyle="red";
+            ctx.translate(100,200);
+            ctx.fillRect(100,100,300,200);
+        ctx.restore();
+        ctx.save();
+            //缩放
+            ctx.fillStyle="blue";
+            ctx.scale(0.7,0.5);
+            ctx.fillRect(100,100,300,200);
+        ctx.restore();
+        ctx.save();
+            //旋转
+            ctx.fillStyle="yellow";
+            ctx.translate(100,100);
+            ctx.rotate(Math.PI/4);
+            ctx.fillRect(0,0,300,200);
+        ctx.restore();
+    ctx.closePath();
+
+    // //贝塞尔曲线
+    // ctx.moveTo(100,100);
+    // ctx.quadraticCurveTo(150,200,200,100);//移动x，y，结束位置x，y
+    // ctx.stroke();
+
+    // //圆形
+    // ctx.beginPath()
+    // ctx.arc(200,200,100,Math.PI*0,Math.PI*.5,false);//x,y,半径，开始角度，结束角度，true逆时针false顺时针
+    // ctx.strokeStyle="red"
+    // ctx.fillStyle="blue"
+    // ctx.fill();
+    // ctx.closePath();
+    // ctx.stroke();
+
+    // ctx.beginPath()
+    // ctx.arc(500,200,100,Math.PI*0,Math.PI*.5,true);//x,y,半径，开始角度，结束角度，true逆时针false顺时针
+    // ctx.strokeStyle="red"
+    // ctx.fillStyle="blue"
+    // ctx.fill();
+    // ctx.closePath();
+    // ctx.stroke();
+
+    // ctx.beginPath()
+    // ctx.arc(200,500,100,Math.PI*1.5,Math.PI*0,true);//x,y,半径，开始角度，结束角度，true逆时针false顺时针
+    // ctx.strokeStyle="red"
+    // ctx.fillStyle="blue"
+    // ctx.fill();
+    // ctx.closePath();
+    // ctx.stroke();
+
+    // ctx.beginPath()
+    // ctx.arc(500,500,100,Math.PI*1.5,Math.PI*0,false);//x,y,半径，开始角度，结束角度，true逆时针false顺时针
+    // ctx.strokeStyle="red"
+    // ctx.fillStyle="blue"
+    // ctx.fill();
+    // ctx.closePath();
+    // ctx.stroke();
+
+    // //矩形
+    // ctx.rect(100,100,200,200);//绘制矩形，x,y,宽，高
+    // ctx.strokeStyle="red"
+    // ctx.fillStyle="blue"
+    // ctx.fill();
+    // ctx.stroke();
+    // ctx.clearRect(150,150,50,50);//清除矩形
+
+
+    // ctx.beginPath()//创建路径
+    // ctx.moveTo(100,100);//开始位置
+    // ctx.lineTo(200,200);//结束位置
+    // ctx.lineTo(200,400);
+    // ctx.lineTo(100,100);
+    // ctx.strokeStyle="red"//改变颜色
+    // ctx.lineWidth="10"//改变粗细
+    // ctx.fillStyle="blue"
+    // ctx.fill();//填充颜色
+    // ctx.closePath();//结束路径
+    // ctx.stroke();//绘制线
+
+    //三角形
+    // ctx.beginPath()
+    // ctx.moveTo(400,100);
+    // ctx.lineTo(500,300);
+    // ctx.lineTo(300,300);
+    // ctx.lineTo(400,100);
+    // ctx.strokeStyle="red"
+    // ctx.lineWidth="10"
+    // ctx.fillStyle="yellow"
+    // ctx.fill();
+    // ctx.closePath();
+    // ctx.stroke();
+
+    // 上字
+    // ctx.moveTo(450,400);
+    // ctx.lineTo(750,400);
+    // ctx.stroke();
+    // ctx.moveTo(600,400);
+    // ctx.lineTo(600,200);
+    // ctx.stroke();
+    // ctx.moveTo(600,300);
+    // ctx.lineTo(675,300);
+    // ctx.stroke();
+
+    //六边形
+    // ctx.beginPath()
+    // ctx.moveTo(200,600);
+    // ctx.lineTo(300,600);
+    // ctx.lineTo(350,700);
+    // ctx.lineTo(300,800);
+    // ctx.lineTo(200,800);
+    // ctx.lineTo(150,700);
+    // ctx.lineTo(200,600);
+    // ctx.fillStyle="yellow"
+    // ctx.fill();
+    // ctx.closePath();
+    // ctx.stroke();
+
+</script>
+</html>

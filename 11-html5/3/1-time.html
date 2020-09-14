@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <h1>钟琼</h1>
+        <canvas id="can" width="600" height="600" style="border: 1px solid pink;background-color: black;">
+
+        </canvas>
+    </div>
+</body>
+<script>
+    /** @type {HTMLCanvasElement} */
+    let can = document.querySelector("#can");
+    let cxt = can.getContext("2d");
+
+    function drawTime(){
+        //获取当前时间
+        let date = new Date();
+        let h = date.getHours();
+        let m = date.getMinutes();
+        let s =date.getSeconds();
+        h = h % 12;
+        h += (m/60);
+        m += (s/60);
+
+        // //绘制大圆盘
+        // cxt.beginPath();
+        // cxt.fillStyle="#00ffff"
+        // cxt.arc(300,300,250,0,Math.PI*2);
+        // cxt.fill();
+        // cxt.closePath();
+
+        //加背景图片
+        cxt.beginPath();
+        cxt.arc(300,300,250,0,Math.PI*2);
+        cxt.closePath();
+        cxt.clip();
+        let img = new Image();
+        img.src="images/clock.jpg"
+        cxt.drawImage(img,50,50,500,500)
+
+        //分钟
+        for(let i = 0;i < 60;i++){
+            cxt.save();
+            cxt.translate(300,300);//设置原点
+            cxt.lineWidth=4;
+            cxt.strokeStyle="blue"
+            cxt.rotate(Math.PI/30*i);
+            cxt.beginPath();
+            cxt.moveTo(0,-240);
+            cxt.lineTo(0,-250);
+            cxt.closePath();
+            cxt.stroke();
+            cxt.restore();
+        }
+        //时针
+        for(let i = 0;i < 12;i++){
+            cxt.save();
+            cxt.translate(300,300);//设置原点
+            cxt.lineWidth=7;
+            cxt.strokeStyle="yellow"
+            cxt.rotate(Math.PI/6*i);
+            cxt.beginPath();
+            cxt.moveTo(0,-230);
+            cxt.lineTo(0,-250);
+            cxt.closePath();
+            cxt.stroke();
+            cxt.restore();
+        }
+        //绘制时针
+        cxt.save();
+        cxt.translate(300,300);//设置原点
+        cxt.lineWidth=7;
+        cxt.strokeStyle="blue";
+        cxt.rotate(Math.PI/6*h)
+        cxt.beginPath();
+        cxt.moveTo(0,20);
+        cxt.lineTo(0,-120);
+        cxt.closePath();
+        cxt.stroke();
+        cxt.restore();
+
+         //绘制分针
+        cxt.save();
+        cxt.translate(300,300);//设置原点
+        cxt.lineWidth=5;
+        cxt.strokeStyle="yellow";
+        cxt.rotate(Math.PI/30*m)
+        cxt.beginPath();
+        cxt.moveTo(0,40);
+        cxt.lineTo(0,-150);
+        cxt.closePath();
+        cxt.stroke();
+        cxt.restore();
+
+         //绘制秒针
+        cxt.save();
+        cxt.translate(300,300);//设置原点
+        cxt.lineWidth=3;
+        cxt.strokeStyle="red";
+        cxt.rotate(Math.PI/30*s)
+        cxt.beginPath();
+        cxt.moveTo(0,60);
+        cxt.lineTo(0,-200);
+        cxt.closePath();
+        cxt.stroke();
+        cxt.restore();
+
+    }
+    
+
+
+
+
+
+    drawTime();
+    setInterval(drawTime,1000);
+</script>
+</html>

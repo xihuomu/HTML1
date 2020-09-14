@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<canvas id='myCanvas' width='500' height='600'>浏览器版本太低！</canvas>
+</body>
+</html>
+<script>
+    var myCanvas=document.getElementById('myCanvas');
+    var cas=myCanvas.getContext('2d');
+    function auto()
+    {
+        var x=300;
+        var y=200;
+        var r=100;
+
+        var data=new Date();
+        var hour=data.getHours();
+        var minute=data.getMinutes();
+        var second=data.getSeconds();
+
+        var H=(-90+hour*30+minute/2)*Math.PI/180;
+        var M=(-90+minute*6)*Math.PI/180;
+        var S=(-90+second*6)*Math.PI/180;
+
+        cas.beginPath();
+        for(var i=0;i<60;i++)
+        {
+            cas.moveTo(300,200);
+            cas.arc(x,y,r,6*i*Math.PI/180,6*(i+1)*Math.PI/180,false);
+        }
+        cas.closePath();
+        cas.stroke();
+
+        cas.beginPath();
+        cas.fillStyle="#fff";
+        cas.moveTo(300,200);
+        cas.arc(x,y,r*19/20,0,360*Math.PI/180,false);
+        cas.fill();
+
+        cas.beginPath();
+        cas.lineWidth=2;
+        for(var i=0;i<12;i++)
+        {
+            cas.moveTo(300,200);
+            cas.arc(x,y,r,30*i*Math.PI/180,30*(i+1)*Math.PI/180,false);
+        }
+        cas.closePath();
+        cas.stroke();
+
+        cas.beginPath();
+        cas.fillStyle="#fff";
+        cas.moveTo(300,200);
+        cas.arc(x,y,r*18/20,0,360*Math.PI/180,false);
+        cas.fill();
+
+        //时针
+        cas.beginPath();
+        cas.lineWidth=3;
+        cas.moveTo(300,200);
+        cas.arc(x,y,r*10/20,H,H,false);
+        cas.closePath();
+        cas.stroke();
+        //分针
+        cas.beginPath();
+        cas.lineWidth=2;
+        cas.moveTo(300,200);
+        cas.arc(x,y,r*14/20,M,M,false);
+        cas.closePath();
+        cas.stroke();
+        //秒针
+        cas.beginPath();
+        cas.lineWidth=1;
+        cas.moveTo(300,200);
+        cas.arc(x,y,r*16/20,S,S,false);
+        cas.closePath();
+        cas.stroke();
+    }
+    setInterval(auto,1000);
+    auto();
+</script>

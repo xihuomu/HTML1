@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="js/vue.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 800px;
+				height: 400px;
+				background-color: white;
+			}
+			ul{
+				list-style: none;
+			}
+			li{
+				background-color: green;
+				float: left;
+				padding: 0 20px;
+				line-height: 50px;
+			}
+			li>a{
+				text-decoration: none;
+				color: white;
+			}
+			.one{
+				background-color: pink;
+			}
+			.box-center{
+				position: absolute;
+				width: 300px;
+				height: 100px;
+				margin-top: 50px;
+				margin-left: 40px;
+				text-align: center;
+				line-height: 100px;
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li :class="{one:title[index].isActive}" 
+					@click="change(index)"
+					v-for="(item,index) in title"
+					:key="index">
+					<a href="#">{{item.value}}</a>
+				</li>	
+			</ul>
+			<div class="box-center"> 
+				你选择了<span>{{content}}</span>
+			</div>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:".box",
+			data:{
+				title: [
+				    {
+				        value: "HTML",
+				        isActive: true
+				    },
+				    {
+				        value: "CSS",
+				        isActive: false
+				    },
+				    {
+				        value: "JavaScript",
+				        isActive: false
+				    },
+				    {
+						value: "Vue.js",
+						isActive: false
+				    },
+				],
+				content:"HTML"
+			},
+			methods:{
+				change(index) {
+				    this.title.forEach((v, i) => i === index ? v.isActive = true : v.isActive = false)
+				    this.content=this.title[index].value
+				},
+				
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=5, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="text"></div>
+    <script>
+        function content()
+        let arr =Array.of(
+            {
+                'name':"1",
+                'num':'11'
+            },
+            {
+                'name':"2",
+                'num':'22'
+            },
+            {
+                'name':"3",
+                'num':'33'
+            }
+        )
+        let allHtml = '';
+        for(let i =0 ;i<arr.length;i++){
+            let html = '<h1 class="'+arr[i].cssname+'">这里是box'+arr[i]["num"]+'</h1>';
+            allHtml = allHtml + html;
+            console.log(allHtml);
+        }
+        document.querySelector('#text').innerHTML = allHtml;
+    </script>
+</body>
+</html>

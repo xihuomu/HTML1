@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <style>
+        .row div{
+            /* background-color: blue; */
+            height: 200px;
+        }
+        .a{
+            background-color: blue; 
+        }
+        .b{
+            line-height: 200px;
+            text-align: center;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>你好bootstrap</h1> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="a b">11</div>
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+                <div class="a"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-md-push-7">
+                <div class="a"></div>
+            </div>
+            <div class="col-md-4 col-md-pull-2">
+                <div class="b"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 ">
+                <div class="a b">11</div>
+            </div>
+            <div class="col-md-4 col-md-offset-4 ">
+                <div class="a"></div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

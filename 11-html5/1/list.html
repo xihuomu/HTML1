@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            float: left;
+            padding: 5px 10px;
+            border: 1px solid gray;
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+<body>
+    <ul>
+        <li>我的主页<audio src="music/a4.mp3" loop="loop"></audio></li>
+        <li>新闻头条<audio src="music/b4.mp3" loop="loop"></audio></li>
+        <li>电视剧<audio src="music/c4.mp3" loop="loop"></audio></li>
+        <li>最新电影<audio src="music/d4.mp3" loop="loop"></audio></li>
+        <li>小游戏<audio src="music/e4.mp3" loop="loop"></audio></li>
+        <li>小说大全<audio src="music/f4.mp3" loop="loop"></audio></li>
+        <li>旅游度假<audio src="music/g4.mp3" loop="loop"></audio></li>
+    </ul>
+</body>
+<script>
+    let lis = document.querySelectorAll("li");
+    for(let i = 0;i < lis.length;i++){
+        lis[i].addEventListener("mouseover",function(even){
+            this.children[0].play();
+            this.style.backgroundColor="gray"
+        })
+        lis[i].addEventListener("mouseout",function(even){
+            this.children[0].pause();
+            this.style.backgroundColor=""
+        })
+    }
+</script>
+</html>

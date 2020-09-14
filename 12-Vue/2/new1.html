@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="js/vue.js"></script>
+		<style>
+			.div1{
+				height: 100px;
+				width: 100px;
+				background-color: pink;
+			}
+			.div2{
+				border: 2px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img v-bind:src="imgsrc" />
+			<div v-bind:class="{div1:istrue1,div2:istrue2}">
+			</div>
+			<br>
+			<div v-bind:class="obj">
+			</div>
+			<br>
+			<div v-bind:class="[diva,divb]">
+			</div>
+			<br>
+			<div v-bind:class="[isft?diva:'',divb]">
+			</div>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:"#box",
+			data:{
+				imgsrc:"img/xk.jfif",
+				istrue1:true,
+				istrue2:true,
+				obj:{'div1':true,'div2':true},
+				diva:'div1',
+				divb:'div2',
+				isft:true
+			},
+			methods:{
+				
+			}
+		});
+		
+	</script>
+</html>

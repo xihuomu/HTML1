@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <canvas id="can" width="400" height="400" style="border: 1px solid pink;">
+
+        </canvas>
+    </div>
+</body>
+<script>
+    let can = document.querySelector("#can");
+    let ctx = can.getContext("2d");
+    //获取canvas的宽和高
+    let width = ctx.canvas.width;
+    let height = ctx.canvas.height;
+    //设置时钟的半径
+    let r = width/2;
+    function draw(){
+        //保存画布状态
+        ctx.save();
+        //清除画布内容
+        ctx.clearRect(0, 0, width, height);
+        //获取当前的时间
+        var now = new Date();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        //画时钟的背景
+        drawBackground();
+        //画时针
+        drawHour(hour,minute);
+        //画分针
+        drawMinute(minute);
+        //画秒针
+        drawSecond(second);
+        //画时钟的原点
+        drawDot();
+        //还原画布原始状态
+        ctx.restore();
+    }
+    function drawBackground(){
+        //定义画布中心为（0，0）
+        ctx.translate(r, r);
+
+        //画边框
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.arc(0, 0, r-ctx.lineWidth/2, 0, 2*Math.PI, false);
+        ctx.stroke();
+
+        //画小时数
+        var hourNumbers = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2];
+        ctx.font ='18px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        hourNumbers.forEach(function(number, i){
+            var rad = 2*Math.PI / 12 * i;
+            var x = Math.cos(rad) * (r - 30);
+            var y = Math.sin(rad) * (r - 30);
+            ctx.fillText(number, x, y);
+        })
+
+        //画秒对应的点
+        for(var i = 0; i<60;i++){
+            var rad = 2*Math.PI/60 *i;
+            var x = Math.cos(rad) * (r - 18);
+            var y = Math.sin(rad) * (r - 18);
+            ctx.beginPath();
+            if(i%5 == 0){
+                ctx.fillStyle = '#000';
+            }else {
+                ctx.fillStyle = '#ccc';
+            }
+            ctx.arc(x, y, 2, 0, 2*Math.PI, false);
+            ctx.fill();
+        }
+    }
+    function degreesToRadian(degrees){
+        return degrees/ 180 * Math.PI;
+    }
+    //画时针
+function drawHour(hour,minute){
+    ctx.save();
+    ctx.beginPath();
+    var rad = 2*Math.PI/12*hour;
+    var mrad = 2*Math.PI/12/60*minute;
+    ctx.rotate(rad + mrad);
+    ctx.lineWidth = 6;
+    ctx.lineCap = 'round';
+    ctx.moveTo(0, 10);
+    ctx.lineTo(0, -r/2);
+    ctx.stroke();
+    ctx.restore();
+}
+
+//画分针
+function drawMinute(minute){
+    ctx.save();
+    ctx.beginPath();
+    var rad = 2*Math.PI/60*minute;
+    ctx.rotate(rad);
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.moveTo(0, 10);
+    ctx.lineTo(0, -r + 30);
+    ctx.stroke();
+    ctx.restore();
+}
+
+//画秒针
+function drawSecond(second){
+    ctx.save();
+    ctx.beginPath();
+    ctx.fillStyle = 'mediumblue';
+    var rad = 2*Math.PI/60*second;
+    ctx.rotate(rad);
+    ctx.moveTo(-2, 20);
+    ctx.lineTo(2, 20);
+    ctx.lineTo(1, -r+18);
+    ctx.lineTo(-1, -r+18);
+    ctx.fill();
+    ctx.restore();
+}
+</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       .three{
+           width: 100px;
+           height: 100px;
+           background-color: black;
+           position: absolute;
+           /* top: 0px;
+           left: 0px; */
+           display: none;
+       }
+    </style>
+</head>
+<body>
+    <button>one</button>
+    <button>two</button>
+    <div class="three">
+
+    </div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
+    <script>
+        let btns = document.querySelectorAll('button');
+        //传统方式只能使用一次
+        btns[0].onclick=function(){
+            alert('1');
+        }
+        btns[0].onclick=function(){
+            alert('2');
+            //解绑事件
+            // this.onclick='null'
+        }
+        //事件监听 可以多次使用侦听器 事件类型为字符串 必定加引号 不带on （onclick）
+        btns[1].addEventListener('click',function(){
+            alert('22');
+        })
+        btns[1].addEventListener('click',function(){
+            alert('33');
+        })
+        let ul = document.querySelector('ul')
+        ul.addEventListener('click',function(e){
+            // alert('77777');
+            e.target.style.backgroundColor='red';
+        })
+        let three = document.querySelector('.three');
+        document.addEventListener('mousemove',function(e){
+            let x =e.pageX;
+            let y =e.pageY;
+            three.style.left = x -10 + 'px';
+            three.style.top = y -10+'px';
+            three.style.display='block';
+        })
+        document.addEventListener('keyup',function(e){
+            console.log(e.keyCode);
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .all{
+            width: 400px;
+            height: 200px;
+            background-color: aqua;
+            margin: auto;
+        }
+        .top{
+            width: 100%;
+            height: 50px;
+            background-color: blue;
+            position: relative;
+        }
+        .top>ul{
+            list-style: none;
+        }
+        .top ul >li{
+            width: 20%;
+            text-align: center;
+            float: left;
+            line-height: 50px;
+        }
+        .li_color{
+            background-color: red;
+        }
+        .item{
+            display: none;
+            height: 150px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="all">
+        <div class="top">
+            <ul>
+                <li class="li_color">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ul>
+        </div>
+        <div class="buttom">
+            <div class="item" style="display: block;">111</div>
+            <div class="item">222</div>
+            <div class="item">333</div>
+            <div class="item">444</div>
+            <div class="item">555</div>
+        </div>
+    </div>
+    <script>
+        let tops =document.querySelector('.top')
+        console.log(tops);
+        let lis =tops.querySelectorAll('li');
+        console.log(lis);
+        let items =document.querySelectorAll('.item')
+        console.log(items);
+        let i =0;
+        for(i=0;i<lis.length;i++){
+            //自定义属性用data-前缀
+            lis[i].setAttribute('data-index',i);
+            lis[i].onclick =function() {
+                //上面一部分
+                for(i=0;i<lis.length;i++) {
+                    lis[i].className='';
+                    items[i].style.display ='none';
+                }
+                
+                this.className='li_color';
+                //下面一部分 
+                // for(i=0;i<items.length;i++){
+                //     items[i].style.display ='none';
+                // }
+                let index =this.getAttribute('data-index');
+                console.log(index);
+                items[index].style.display ='block';
+            }
+        }
+    </script>
+</body>
+</html>

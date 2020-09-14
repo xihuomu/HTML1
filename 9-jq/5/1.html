@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function(){
+            let obj1={
+                name:0,
+                age:34,
+                hobby:{
+                    player:99,
+                    worker:23
+                }
+            }
+            let obj2={
+                a:1,
+                b:2,
+                c:3,
+                hobby:{
+                    player:22,
+                    age:45
+                }
+            }
+            $.extend(obj1,obj2);
+            let priobj = typeof JSON!="undefined"?JSON.stringify:function(obj){
+                let arr=[];
+                $.each(obj,function(kav,val){
+                    let text = key + ":" ;
+                    text+=$.isEmptyObject(val)?priobj(val):val;
+                    arr.push(text);
+                })
+                return "("+array.join(",")+")"
+            }
+            $("#pri").append(priobj(obj1));
+        })
+    </script>
+</head>
+<body>
+    <p id="pri"></p>
+</body>
+</html>

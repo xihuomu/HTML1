@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>课工场论坛列表</title>
+    <link href="css/bbs.css" rel="stylesheet">
+    <style>
+        ul li img{
+            width: 100px;
+        }
+    </style>
+    <script src="./js/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function(){
+            let $imgs = new Array("images/I1.jpg","images/I3.jpg","images/I2.jpg");
+            // let $name = new Array("1","2","3");
+            $("header").click(function(){
+                $(":hidden").show();
+                $(".btn").click(function(){
+                    $(".post:visible").hide();
+                    let $num = parseInt(Math.random()*3);
+                    let time=new Date();
+                    let year=time.getFullYear();
+                    let yue=time.getMonth()+1;
+                    let ri=time.getDate();
+                    let shi=time.getHours();
+                    let fen=time.getMinutes();
+                    let miao=time.getSeconds();
+                    let shu= year+"-"+yue+"-"+ri+" "+shi+":"+fen+":"+miao;
+                    let checkText=$("select").find("option:selected").text();
+                    let $newbiao = $(".title").val();
+                    $("ul").prepend("<li><img src='"+$imgs[$num]+"'/><h1></h1><br><p>模板：</p><p></p></li>");
+                    $("ul li>p:last").html("时间："+shu);
+                    $("ul li>p:first").html("板块:"+checkText);
+                    $("ul li>h1").html($newbiao);
+                })
+                $("ul").html("");
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="bbs">
+    <header><span>我要发帖</span></header>
+    <section>
+        <ul>
+        </ul>
+    </section>
+    <div class="post">
+        <input class="title" placeholder="请输入标题（1-50个字符）">
+        所属版块：<select><option>请选择版块</option><option>电子书籍</option><option>新课来了</option><option>新手报到</option><option>职业规划</option></select>
+        <textarea class="content"></textarea>
+        <input class="btn" value="发布">
+    </div>
+</div>
+
+</body>
+</html>

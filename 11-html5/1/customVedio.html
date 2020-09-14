@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="customVedio.css" rel="stylesheet">
+</head>
+<body>
+<div class="box">
+    <video id="video">
+        <source src="video/video.webm"/>
+        <source src="video/video.mp4"/>
+    </video>
+    <div class="jp-gui">
+        <div class="jp-interface">
+            <div class="jp-controls-holder">
+                
+                <!--播放和暂停按钮-->
+                <a href="javascript:;" class="jp-play" tabindex="1" style="display: block;">play</a>
+                <a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;">pause</a>
+                <span class="separator sep-1"></span>
+
+                <!--进度条-->
+                <div class="jp-progress">
+                    <div class="jp-seek-bar" style="width: 100%;">
+                        <div class="jp-play-bar" style="width: 0%;"><span></span></div>
+                    </div>
+                </div>
+
+                <!--当前播放事件和总视频时间-->
+                <div class="jp-current-time" style="padding: 0 2px 0 5px;">00:00</div>
+                <span class="time-sep">/</span>
+                <div class="jp-duration" style="padding: 0 5px 0 2px;">01:11</div>
+
+                <!--声音进度条-->
+                <div class="jp-volume-bar">
+                    <div class="jp-volume-bar-value" style="width: 90%;"><span class="handle" style="padding-left: 0px;"></span></div>
+                </div>
+
+                <!--全屏按钮-->
+                <a href="javascript:;" class="jp-full-screen" tabindex="1" title="full screen">full screen</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    let video = document.querySelector("#video");
+    let play = document.querySelector(".jp-play");
+    let pause = document.querySelector(".jp-pause");
+    let seek = document.querySelector(".jp-seek-bar");
+    let playbar = document.querySelector(".jp-play-bar");
+    let duration = document.querySelector(".jp-duration");
+    let current = document.querySelector(".jp-current-time");
+    let volume = document.querySelector(".jp-volume-bar");
+    let currvolume = document.querySelector(".jp-volume-bar-value");
+    let full = document.querySelector(".jp-full-screen");
+    video.addEventListener("canplay",function(){
+
+        //1.播放
+        play.addEventListener("click",function(){
+            video.play();
+            if(!video.paused){
+                play.style.display="none"
+                pause.style.display="block"
+            }
+        },false)
+
+        //2.暂停
+        pause.addEventListener("click",function(){
+            video.pause();
+            if(video.paused){
+                play.style.display="block"
+                pause.style.display="none"
+            }
+        },false)
+
+        //3.显示时长
+        duration.innerHTML=toTime(video.duration);
+       
+        //4.进度实时更新
+        video.addEventListener("timeupdate",function(){
+            current.innerHTML=toTime(video.currentTime);
+            playbar.style.width=(video.currentTime/video.duration)*100+"%";
+        })
+
+        //5.点击进度条，更新时间
+        seek.addEventListener("click",function(e){
+            let currx = e.offsetX;
+            let allx = this.offsetWidth;
+            let bl = currx/allx
+            playbar.style.width=bl*100+"%";
+            video.currentTime = bl * video.duration;
+        })
+        
+        //6.调节音量
+        volume.addEventListener("click",function(e){
+            let currx = e.offsetX;
+            let allx = this.offsetWidth;
+            let bl = currx/allx;
+            video.volume = bl;
+            currvolume.style.width = bl * 100  + "%";
+        })
+        //7.全屏操作
+        full.addEventListener("click",function(){
+            video.requestFullscreen();
+        })
+
+        //8.视频播放完
+        video.addEventListener("ended",function(){
+            video.currentTime = 0;
+            if(video.paused){
+                play.style.display="block"
+                pause.style.display="none";
+            }
+        })
+        // 计算时间
+        function toTime(num){
+           let m = Math.floor(num/60);
+           m = m > 9 ? m : "0" + m;
+           let s = Math.floor(num%60);
+           s = s > 9 ? s : "0" + s;
+           return m + ":" + s 
+        }
+
+    },false)
+</script>
+</html>

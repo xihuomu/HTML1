@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/indx.css" rel="stylesheet">
+</head>
+<body>
+    <div id="time">
+        2020-8-13
+    </div>
+    <ul>
+        <li>你是</li>
+        <li>谁</li>
+        <li>666</li>
+        <li>7777</li>
+        <li>111</li>
+        <li>3333</li>
+    </ul>
+    <ul id="nav">
+        <li>今天天气好啊</li>
+        <li>今天天气好啊</li>
+        <li>今天天气好啊</li>
+        <li>今天天气好啊</li>
+        <li>今天天气好啊</li>
+    </ul>
+    <div class="box">
+        div的内容
+    </div>
+    <div class="box">
+        div的内容
+    </div>
+<script>
+    let one = document.getElementById('time');
+    console.log(one);
+    console.log(typeof one);
+    console.dir(one);
+    let lis=document.getElementsByTagName('li');
+    console.log(lis);
+    console.log(lis[0]);
+    for(let i = 0 ;i<lis.length;i++){
+        console.log(lis[i]);
+    }
+    let nav = document.getElementById('nav');
+    let navs =nav.getElementsByTagName('li');
+    console.log(navs);
+
+    let div_one = document.getElementsByClassName('box');
+    console.log(div_one);
+
+    let first = document.querySelector('.box');
+    console.log(first);
+
+    let two = document.querySelectorAll('.box')
+    console.log(two);
+
+    let bodyEle = document.body;
+        console.log(bodyEle);
+        //获取body和html
+    let htmlEle =document.documentElement;
+        console.log(htmlEle);
+</script>
+</body>
+</html>

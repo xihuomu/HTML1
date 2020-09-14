@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="niHao">你好</button>
+    <div>
+        时间
+    </div>
+    <script>
+        let ni = document.getElementById('niHao');
+        let div = document.querySelector('div')
+        ni.onclick=function(){
+            // alert('再见');
+            div.innerHTML = getDate();
+        }
+        function getDate(){
+            let date = new Date();
+            // 获取时间
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let dates = date.getDate();
+            let hours = date.getHours(); 
+            let minutes = date.getMinutes(); 
+            let seconds = date.getSeconds(); 
+            let arr = ['星期天','星期一','星期二','星期三','星期四','星期五','星期六']
+            let day = date.getDay();
+            return '今天是:' + year + '年' + month + '月' + dates + '日' + arr[day] + hours + '时' + minutes + '分' + seconds+'秒' 
+        }
+    </script>
+</body>
+</html>

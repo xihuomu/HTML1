@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <canvas id="can" width="800" height="500" style="border: 1px solid pink;">
+
+        </canvas>
+    </div>
+</body>
+<script>
+    let can = document.querySelector("#can");
+    let ctx = can.getContext("2d");
+
+    //绘制横线
+    for(var i=0; i <8; i++){
+        ctx.moveTo(50,i*50);
+        ctx.lineTo(550,i*50);
+    }
+    //绘制竖线
+    for(var j=0; j <6; j++){
+        ctx.moveTo(j*100+50,50);
+        ctx.lineTo(j*100+50,350);
+    }
+    ctx.lineWidth = 0.5;
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+
+    ctx.save();  
+    ctx.font="15px Arial";
+    ctx.fillText("万元/m^2",25,25);
+    ctx.restore();
+
+    for(var k=0;k<8;k++){
+    ctx.save();  
+    ctx.font="15px Arial";
+    ctx.fillText(k*50,0,350-k*50);
+    ctx.restore();
+    }
+
+    for(var m=0;m<6;m++){
+        if(m<3){
+            ctx.save();  
+            ctx.font="15px Arial";
+            ctx.textAlign='center';
+            ctx.fillText(10+m+"月",50+100*m,380);
+            ctx.restore();
+        }else{
+            ctx.save();  
+            ctx.font="15px Arial";
+            ctx.textAlign='center';
+            ctx.fillText(m-3+"月",50+100*m,380);
+            ctx.restore();
+        }
+    }
+
+    nums = [0,60,120,40,70,250];
+    nums1= [90,150,10,140,230,0]
+    datas = ["10月","11月","12月","1月","2月","3月"];
+
+    //画出折线
+    function drawLine(){
+        for (n = 0;n < nums.length-1;n ++){
+            //起始坐标
+            var numsY = 350-nums[n];
+            var numsX = n*100+50;
+            //终止坐标
+            var numsNY =350-nums[n+1];
+            var numsNX = (n+1)*100+50;
+            ctx.beginPath();
+            ctx.moveTo(numsX,numsY);
+            ctx.lineTo(numsNX,numsNY);
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "red";
+            ctx.closePath();
+            ctx.stroke();
+        }
+    }
+
+    function drawLine1(){
+        for (n = 0;n < nums1.length-1;n ++){
+            //起始坐标
+            var numsY = 350-nums1[n];
+            var numsX = n*100+50;
+            //终止坐标
+            var numsNY =350-nums1[n+1];
+            var numsNX = (n+1)*100+50;
+            ctx.beginPath();
+            ctx.moveTo(numsX,numsY);
+            ctx.lineTo(numsNX,numsNY);
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "blue";
+            ctx.closePath();
+            ctx.stroke();
+        }
+    }
+    //绘制折线点的菱形和数值，横坐标值，纵坐标值
+    function drawBlock(){
+        for (p = 0;p <= nums.length;p ++){
+            var numsY = 350-nums[p];
+            var numsX =n*100+50;
+            ctx.beginPath();
+            // 画出折线上的圆圈
+            ctx.arc(p*100+50,350-nums[p],4,0,Math.PI*2,true);//x,y,半径，开始的角度，瞬时间(false)/逆时针（true）
+            ctx.fillStyle="red";
+            ctx.fill();
+             //折线上的点值
+            // var text = ctx.measureText(nums[i]);
+            // ctx.fillText(nums[i],numsX-text.width,numsY-10);
+            // ctx.closePath();
+        }
+    }
+    function drawBlock1(){
+        for (p = 0;p <= nums1.length;p ++){
+            var numsY = 350-nums1[p];
+            var numsX =n*100+50;
+            ctx.beginPath();
+            // 画出折线上的圆圈
+            ctx.arc(p*100+50,350-nums1[p],4,0,Math.PI*2,true);//x,y,半径，开始的角度，瞬时间(false)/逆时针（true）
+            ctx.fillStyle="blue";
+            ctx.fill();
+           
+        }
+    }
+    drawLine();
+    drawLine1();
+    drawBlock();
+    drawBlock1();
+    
+</script>
+</html>

@@ -1,0 +1,8 @@
+*{margin:0;padding: 0}
+	ul{list-style: none;}	 
+	#box{width: 500px;height: 310px;margin: auto;background: #ccc;}
+	.top{width:500px;height: 260px;overflow: hidden;}
+	.top img{width:500px;height:260px;float:left;}
+	.bottom{float:right;}
+	.bottom li{float:left;line-height: 50px;width:50px;height: 50px;background: #999999;border-left:1px solid #fff;text-align: center;color: #fff;font-size:30px;}
+	.bottom li.bg{background: red}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 模态框 -->
+        <a href="#mymodal" class="btn btn-primary" data-toggle="modal">
+            打开弹窗
+        </a>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#mymodal">
+            我也能
+        </button>
+        <!-- 淡入淡出效果modal fade 阻止按弹窗的其他位置关闭data-backdrop="static"默认值为true-->
+        <div id="mymodal" class="modal fade " data-backdrop="static">
+            <!-- 控制弹出框大小modal-lg modal-sm -->
+            <div class="modal-dialog  modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- 关闭data-dismiss4 -->
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h3>寻物启事</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>老师丢了一头小母猪</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary">保存</button>
+                        <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        // $(".modal").modal();//默认弹出
+        $(".modal").modal({
+            show:false,
+        })
+        $(".modal").on("hidden.bs.modal",function(){
+            alert("关闭了(⊙o⊙)")
+        })
+    })
+</script>
+</html>

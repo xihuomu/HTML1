@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="js/vue.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 300px;
+				background-color: #D7FFF1;
+				padding: 50px 50px;
+				margin: 0 auto;
+				line-height: 40px;
+			}
+			ul{
+				list-style: none;
+			}
+			.change{
+				color: #999;
+				text-decoration: line-through;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<h1>任务列表</h1>
+			<p>任务总数：{{arr.length}} 还有：{{choosebol()}}未完成 【<span style="color: #0077AA;" @click="finish()">完成</span>】</p>
+			<ul>
+				<li v-for="(item,index) in arr">
+					<input type="checkbox" v-model="item.bol" />
+					<span v-show="!item.edit" v-bind:class="{change:item.bol}" @click="editclick(index)">{{item.title}}</span>
+					<input type="text" v-show="item.edit" v-model="item.title" @blur="item.edit=false"/>
+				</li>
+			</ul>
+			<input type="text" v-model="msg"/>
+			<button type="button" @click="add()">添加</button>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:".box",
+			data:{
+				arr:[
+					{
+						title:"设计",bol:false,edit:false
+					},
+					{
+						title:"前端",bol:false,edit:false
+					},	
+					{
+						title:"后端",bol:false,edit:false
+					},	
+					{
+						title:"全站",bol:false,edit:false
+					}
+				],
+				msg:""
+			},
+			methods:{
+				add:function(){
+					this.arr.push({title:this.msg,bol:false,edit:false});
+					this.msg="";
+				},
+				choosebol:function(){
+					let num = 0;
+					this.arr.forEach(function(item){
+						if(!item.bol){
+							num++;
+						}
+					});
+					return num;
+				},
+				finish:function(){
+					let trs = this.arr;
+					this.arr=[];
+					for(let i = 0 ;i<trs.length;i++){
+						if(!trs[i].bol){
+							this.arr.push(trs[i]);
+						}
+					}
+				},
+				editclick:function(index){
+					this.arr[index].edit=true
+				}
+			}
+		})
+	</script>
+</html>
