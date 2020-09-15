@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/axios.min.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<h1>{{msg}}</h1>
+			<button @click="getReq()" type="button">get</button>
+			<button @click="postReq()" type="button">post</button>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:'#box',
+			data:{
+				msg:"大家好，我是坤坤",
+				posturl:"http://route.showapi.com/90-87?showapi_appid=45300&showapi_sign=c28de9d6f79e44369a9abcd40fa3e277"
+			},
+			methods:{
+				getReq:function(){
+					axios.get("hello.txt").then(
+						res=>{
+							this.msg=res.data
+						}
+					).catch(
+						err=>{
+							console.log(err)
+						}
+					)
+				},
+				postReq:function(){//点击按钮，发送请求
+					axios.post(this.posturl,{
+						params:{
+							name:"lisi",
+							age:999
+						},
+						headers:{
+							'content_type':'application/x-www.form-urlencoded'
+						}
+					}).then(
+						res=>{
+							this.msg=res.data//响应回来的结果 response
+						}
+					).catch(//error
+						err=>{
+							console.log(err);
+						}
+					);						
+				}
+			}
+		})
+	</script>
+</html>

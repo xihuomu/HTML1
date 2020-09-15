@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/axios.min.js"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 1200px;
+				margin: 0 auto;
+			}
+			.box-top{
+				background-color: lightgreen;
+				line-height: 50px;
+				color: white;
+				border-radius: 5px;
+				font-size: 20px;
+				font-weight: 900;
+				text-indent: 10px;
+			}
+			p{
+				line-height: 30px;
+				margin: 10px 0;
+			}
+			ul{
+				list-style: none;
+			}
+			img{
+				width: 280px;
+				height: 250px;
+			}
+			li{
+				width: 280px;
+				padding: 30px 20px 0 0;
+				float: left;
+			}
+			li:nth-child(4n){
+				padding-right: 0px;
+			}
+			a{
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				text-align: center;
+				font-size: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"> 
+			<div class="box-top">
+				网易健康
+			</div>
+			<p v-show="flag">
+				正在加载，请稍后...<br>
+				如果长时间未加载，请手动刷新页面...
+			</p>
+			<ul>
+				<li v-for="item in newlists">
+					<a :href="item.url">
+					<img :src="item.sourceurl?getImage(item.sourceurl):'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1558026985,2729915815&fm=26&gp=0.jpg'">
+					<p>{{item.title}}</p></a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:"#box",
+			data:{
+				newlists:[],
+				flag:true,
+				
+			},
+			mounted:function(){
+				axios.get("https://route.showapi.com/107-33?showapi_appid=365496&showapi_timestamp=20200914154202&showapi_sign=e2fc82af5c8f4de0b842d17eb1617c79").then(
+				res=>{
+					// console.log(res.data.showapi_res_body.list)
+					this.flag=false
+					this.newlists=res.data.showapi_res_body.list
+				}
+				)
+			},
+			filters:{
+				filter1:function(value){
+					return value.substring(0,10)
+				}
+			},
+			methods:{
+				getImage(url){
+					console.log(url);
+					// 把现在的图片连接传进来，返回一个不受限制的路径
+					if(url !== undefined){
+						return url.replace(/^(http)[s]*(\:\/\/)/,'https://images.weserv.nl/?url=');
+					}
+				}
+			}
+		})
+		
+	</script>
+</html>

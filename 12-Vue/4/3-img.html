@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="js/vue.js"></script>
+		<script src="js/axios.min.js"></script>
+		<style>
+			#box{
+				line-height: 40px;
+				width: 360px;
+				text-align: center;
+				border: 1px solid red;
+				margin: 0 auto;
+			}
+			h2{
+				padding: 10px 20px;
+				background-color: red;
+				color: white;
+				margin-top:0px;
+			}
+			.one{
+				border-radius: 75%;
+				width: 40px;
+				height: 40px;
+				background-color: #808080;
+				color: black;
+			}
+			.box-center{
+				border-bottom:1px dashed #000; 
+				color: gray;
+			}
+			.left{
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<h2>大家都喜欢的彩妆</h2>
+			{{arr.num}}
+			<div v-for="(item,index) in arr" class="box-center">
+				<span class="one left">{{item.num}}</span><span class="left">{{item.name}}</span>
+				<br><img :src=item.imgUrl />
+				<br><span>{{item.desc}}</span>
+			</div>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:"#box",
+			data:{
+				arr:""
+			},
+			mounted(){
+				this.getReq()
+			},
+			methods:{
+				getReq:function(){
+					axios.get('3_hello.txt').then(
+						res=>{
+							this.arr=res.data
+							console.log(this.arr)
+						}
+					).catch(
+						err=>{
+							console.log(this.arr)
+						}
+					)
+				}
+			},
+		})
+	</script>
+</html>

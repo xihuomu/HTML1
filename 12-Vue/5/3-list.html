@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/axios.min.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 1200px;
+				margin: 50px auto;
+				padding: 50px 50px;
+				border: 1px solid red;
+			}
+			img{
+				width: 50px;
+				height: 50px;
+			}
+			ul{
+				list-style: none;
+			}
+			li{
+				border-bottom: 1px solid gray;
+			}
+			li>p{
+				display: inline-block;
+				padding: 0px 20px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			
+			<h1>钟琼</h1>
+			<ul>
+				<li v-for="item in newlists">
+					<img :src="item.author.avatar_url"/>
+					<p style="width: 100px;">{{item.reply_count}}/{{item.visit_count}}</p>
+					<p style="width: 600px;">{{item.title}}</p>
+					<p style="float: right;line-height: 50px;">{{item.last_reply_at|filter1}}</p>
+					<br>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:"#box",
+			data:{
+				newlists:[],
+			},
+			filters:{
+				filter1:function(value){
+					return value.replace(/T/g," ").substring(0,19)
+				}
+			},
+			mounted:function(){
+				axios.get("https://cnodejs.org/api/v1/topics").then(
+				res=>{
+					this.newlists=res.data.data
+				}
+				)
+			},
+			methods:{
+				
+			}
+		})
+		
+	</script>
+</html>

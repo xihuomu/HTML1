@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/axios.min.js"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 400px;
+				margin: 40px auto;
+				border: 1px solid red;
+				line-height: 40px;
+				padding: 20px 20px;
+			}
+			ul{
+				list-style: none;
+				line-height: 30px;
+			}
+			li{
+				border: 1px solid blue;
+				border-top: none;
+			}
+			li:first-child{
+				border-top: 1px solid blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"> 
+			<button @click="select()" type="button">点击加载评论</button>
+			<ul>
+				<li v-for="item in newlists">
+					<h3>{{item.commentTxt}}</h3>
+					<p>{{item.createAt|filter1}}</p>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:"#box",
+			data:{
+				newlists:[],
+			},
+			filters:{
+				filter1:function(value){
+					return value.substring(0,10)
+				}
+			},
+			methods:{
+				select:function(){
+					axios.get("http://api.artgoer.cn:8084/artgoer/api/v1/user/324380/v3/topic/topicHomeByLabel?pageIndex=1&token=b544cd63-6d42-46fe-a96c-3cf96bae3113&topicId=62187").then(
+					res=>{
+						this.newlists=res.data.data.commentList
+					}
+					)
+				}
+			}
+		})
+		
+	</script>
+</html>

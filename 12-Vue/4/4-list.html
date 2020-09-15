@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="js/vue.js"></script>
+		<style>
+			#box{
+				width: 400px;
+				margin: 0 auto;
+			}
+			table{
+				border: 1px solid gray;
+				width: 400px;
+				text-align: center;
+				margin-top: 20px;
+				line-height: 40px;
+				border-collapse: collapse;
+			}
+			tbody tr:nth-child(2n){
+				background-color: gray;
+			}
+			thead{
+				background-color: #0077AA;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<h3>搜索名称</h3>
+			<input v-model="search" />
+			<table>
+				<thead>
+					<tr>
+						<td>name</td>
+						<td>Gender</td>
+						<td>Age</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(item,index) in fillMessage">
+						<td>{{item.name|filter}}</td>
+						<td>{{item.Gender}}</td>
+						<td>{{item.Age}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:"#box",
+			data:{
+				arr:[
+					{
+						name:"rick",Gender:"male",Age:21
+					},
+					{
+						name:"demen",Gender:"male",Age:26
+					},
+					{
+						name:"jack",Gender:"male",Age:26
+					},
+					{
+						name:"John",Gender:"female",Age:20
+					},
+					{
+						name:"Lucy",Gender:"female",Age:16
+					}
+				],
+				search:''
+			},
+			computed:{
+				fillMessage:function(){
+					return this.arr.filter(newarr=>{
+						return newarr.name.match(this.search)
+					})
+				}
+			},
+			filters:{
+				filter(value){
+						return value.replace(/\b[a-zA-Z]+\b/g,item=>{
+						return item.charAt(0).toUpperCase()+item.substring(1);
+					});
+				}
+			}
+		})
+	</script>
+</html>

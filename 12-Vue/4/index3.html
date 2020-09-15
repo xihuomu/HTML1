@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="js/vue.js"></script>
+		<style>
+			.box{
+				width: 400px;
+				margin: 0 auto;
+			}
+			ul{
+				list-style: none;
+			}
+			li{
+				line-height: 40px;
+				color: gray;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<input v-model="newnum" type="text"/><button @click="add()">打折</button>
+			<ul>
+				<li v-for="(item,index) in fruits">
+					{{item.name}}--{{item.price|filter2(num)|filter1("￥")}}
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:".box",
+			data:{
+				fruits:[
+					{
+						name:"苹果",price:20
+					},
+					{
+						name:"橘子",price:30
+					},
+					{
+						name:"雪梨",price:70
+					},
+					{
+						name:"香蕉",price:50
+					}
+				],
+				num:10,
+				newnum:10
+			},
+			filters:{
+				filter1:function(value,str){
+					let res =str+value;
+					return res;
+				},
+				filter2:function(value,k){
+					let res = value*k/10;
+					return res;
+				}
+			},
+			methods:{
+				add:function(){
+					this.num=this.newnum
+				}
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./js/vue.js" type="text/jscript"></script>
+		<script src="js/axios.min.js"></script>
+	</head>
+	<body>
+		<div id="box">
+			<h1>{{msg}}</h1>
+			<button @click="divClick">点击</button>
+			<h2>{{a}}</h2>
+			<br>
+			<h2>{{a|filter("￥")}}</h2>
+		</div>
+	</body>
+</html>
+<script>
+	var box=new Vue({
+		el:'#box',
+		data:{
+			msg:"标题",
+			a:99
+		},
+		filters:{
+			filter:function(a,Str){
+				let res = Str+a;
+				return res;
+			}
+		},
+		beforeCreate:function(){
+			console.log("创建之前")
+		},
+		created:function(){
+			console.log("创建之后")
+		},
+		beforeMount:function(){
+			console.log("元素执行之前")
+		},
+		methods:{
+			divClick:function(){
+				axios.get("hello.txt",{
+					params:{
+						name:"lisi",
+						age:999
+					},
+					headers:{
+						token:"110"
+					}
+					}).then(
+						res=>{
+							this.msg=res.data//响应回来的结果 response
+						}
+					).catch(//error
+						err=>{
+							console.log(err);
+						}
+					);						
+				},
+			},
+		mounted:function(){//dom元素加载完成之后，会执行的一个函数
+		//钩子函数
+			axios.interceptors.request.use(//请求拦截器
+			function(config){
+				console.log("我在请求之前会执行");
+				console.log("请求参数"+config.params.name);
+				console.log("请求方法"+config.method);
+				console.log("请求路径"+config.url);
+				return config;
+			},
+			function(error){
+				console.log("我在错误之前会执行");
+				return Promise.reject(error);
+			});
+			
+			axios.interceptors.request.use(//响应拦截器
+			function(response){
+				console.log("我在响应之前会执行");
+				return response;
+			},
+			function(error){
+				console.log("我在错误之前会执行");
+				return Promise.reject(error);
+			});
+		},
+		beforeUpdate:function(){
+			console.log("元素修改之前")
+		},
+		updated:function(){
+			console.log("元素修改之后")
+		}
+	});
+</script>
