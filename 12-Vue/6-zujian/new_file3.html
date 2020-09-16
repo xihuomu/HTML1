@@ -11,15 +11,30 @@
 	</head>
 	<body>
 		<div id="box">
-			
+			<!-- <input v-model="msg" /> -->
+			<my-com :width="msg"></my-com>
 		</div>
 	</body>
 	<script>
+		Vue.component("myCom",{
+			props:['width'],
+			template:'<div :style="style">传值的内容：{{width}}</div>',
+			computed:{
+				style:function(){
+					return{
+						width:this.width+"px"
+					}
+				}
+			}
+		})
 		let box = new Vue({
 			el:"#box",
 			data:{
-				
+				msg:150
 			},
+			methods:{
+				
+			}
 		})
 	</script>
 </html>

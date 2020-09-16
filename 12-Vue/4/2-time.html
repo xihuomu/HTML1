@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<div id="box">
-			{{ currentTime}}
+			{{msg|change}}
 		</div>
 	</body>
 	<script>
@@ -19,32 +19,51 @@
 			el:"#box",
 			data() {
 			    return {
-			      timer: "",//定义一个定时器的变量
-			      currentTime: new Date(), // 获取当前时间
+			      msg:null,
+				  sss:null
 			    };
-			  },
-			created() {
-			    var _this = this; //声明一个变量指向Vue实例this，保证作用域一致
-			    this.timer = setInterval(function() {
-			      _this.currentTime = //修改数据date
-			        new Date().getFullYear() +
-			        "-" +
-			        (new Date().getMonth() + 1) +
-			        "-" +
-			        new Date().getDate() +
-			        " " +
-			        new Date().getHours() +
-			        ":" +
-			        new Date().getMinutes() +
-			        ": " +
-			        new Date().getSeconds();
-			    }, 1000);
-			  },
-			beforeDestroy() {
-			    if (this.timer) {
-			      clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
-			    }
-			  }
+			},
+			mounted:function(){
+				this.fn()
+			},
+			beforeDestroy:function(){
+				clearInterval(this.sss)
+			},
+			methods:{
+				fn1(){
+					this.msg=new Date()
+				},
+				fn(){
+					this.sss=setInterval(this.fn1(),1000)
+				}
+			},
+			filters:{
+				change:function(value){
+					let year =(value.getFullYear()).toString()
+					let month =(value.getMonth() + 1).toString(); 
+					let day = (value.getDay()).toString();  
+					let hours = (value.getHours()).toString();
+					let minute = (value.getMinutes()).toString();
+					let second = (value.getSeconds()).toString();
+					if (month.length == 1) { 
+						month = "0" + month; 
+					} 
+					if (day.length == 1) { 
+						day = "0" + day; 
+					}
+					if (hours.length == 1) {
+							hours = "0" + hours;
+					}
+					if (minute.length == 1) {
+							minute = "0" + minute;
+					}
+					if (second.length == 1) {
+							second = "0" + second;
+					}
+					return valueTime = year + "-" + month + "-" + day +" "+hours+":"+minute+":"+second;
+				}
+			}
+			
 		})
 	</script>
 </html>

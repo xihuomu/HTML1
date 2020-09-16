@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="js/vue.js"></script>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.navs1{
+				background-color: royalblue;
+				/* height: 40px; */
+				width: 100%;
+				padding: 10px 50px;
+				position: fixed;
+			}
+			.navs1 img{
+				width: 30px;
+				vertical-align:middle;
+			}
+			.navs-input{
+				margin: 0 50px;
+				width: 800px;
+				padding: 10px 20px;
+				float: left;
+				background-color: white;
+				border-radius: 5px;
+			}
+			.navs-input>input{
+				border: 0;
+			}
+			.mylist{
+				padding: 20px 20px;
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+			}
+			.lists{
+				text-align: center;
+				width: 25%;
+				float: left;
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<par-nav></par-nav>
+		</div>
+		<template id="parnav">
+			<div>
+				<my-nav txt1="请输入搜索的内容" img1="img/ic_search_gray.png" img2="img/ic_scan_gray.png" img3="img/ic_chat_white.png"></my-nav>
+				<my-bottom img4="img/1.png" txt4="首页"></my-bottom>
+				<my-bottom img4="img/1.png" txt4="首页"></my-bottom>
+			</div>
+		</template>
+		<template id="navs">
+			<div class="navs1">
+				<div class="navs-input">
+					<img :src="img1" />
+					<input :placeholder="txt1"/>
+					<img :src="img2" style="float: right;"/>
+				</div>
+				<img :src="img3" style="padding: 10px 20px 10px 0px;float: right;"/>
+			</div>
+		</template>
+		<template id="bottom">
+			<div class="mylist"> 
+				<div class="lists">
+					<img :src="img4"/>
+					<br>
+					<span>{{txt4}}</span>
+				</div>
+				<div class="lists">
+					<img :src="img4"/>
+					<br>
+					<span>{{txt4}}</span>
+				</div>
+				<div class="lists">
+					<img :src="img4"/>
+					<br>
+					<span>{{txt4}}</span>
+				</div>
+				<div class="lists">
+					<img :src="img4"/>
+					<br>
+					<span>{{txt4}}</span>
+				</div>
+			</div>
+		</template>
+	</body>
+	<script>
+		let box = new Vue({
+			el:"#box",
+			data:{},
+			components:{
+				'parNav':{
+					template:'#parnav',
+					components:{
+						'myNav':{
+							template:'#navs',
+							props:['txt1','img1','img2','img3']
+						},
+						'myBottom':{
+							template:'#bottom',
+							props:['img4','txt4']
+						}
+					}
+				}
+			}
+		})
+	</script>
+</html>

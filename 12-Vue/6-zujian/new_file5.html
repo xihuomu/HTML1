@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<!-- 匿名插槽 和 具名插槽 -->
+	<body>
+		<div id="box">
+			<my-content>
+				<h1 slot="one">我是新插进来的</h1>
+				<h2 slot="two">俺也一样</h2>
+			</my-content>
+		</div>
+		<template id="mycom">
+			<div>
+				<p>我是头部内容</p>
+				<slot name="one">我是第一个插槽,没有分发内容是，我就显示</slot>
+				<p>我是底部内容</p>
+				<slot name="two">我是第二个插槽,没有分发内容是，我就显示</slot>
+			</div>
+		</template>
+	</body>
+</html>
+<script>
+	Vue.component('myContent',{
+		template:'#mycom',
+	});
+	var box=new Vue({
+		el:'#box',
+		data:{
+			
+		},
+		methods:{
+			
+		}
+	})
+</script>

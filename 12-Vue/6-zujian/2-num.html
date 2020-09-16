@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script src="js/vue.js"></script>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<parent></parent>
+		</div>
+		<template id="parCom">
+			<div id="">
+				<h1>{{parmsg}}</h1>
+				<button @click="fel">-</button>
+				<childson  @change='getVal'></childson>
+			</div>
+		</template>
+		<template id="chiCom">
+			<div>
+				<button @click="add()">+</button>
+			</div>
+		</template>
+	</body>
+	<script>
+		let box = new Vue({
+			el:"#box",
+			data:{},
+			components:{
+				'parent':{
+					template:'#parCom',
+					data:function(){
+						return {
+							parmsg:0
+						}
+					},
+					methods:{
+						getVal:function(val){
+							this.parmsg=val;
+						},
+						fel:function(val){
+							this.parmsg--
+						},	
+					},
+					components:{
+						'childson':{
+							template:'#chiCom',
+							data:function(){
+								return{
+									chimsg:0
+								}
+							},
+							methods:{
+								add:function(){
+									this.chimsg=this.$parent.parmsg
+									this.chimsg++
+									this.$emit("change",this.chimsg);
+								}
+							}
+						}
+					}
+				}
+				
+			}
+		})
+	</script>
+</html>
