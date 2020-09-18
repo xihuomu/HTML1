@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+		<script src="js/bootstrap.js"></script>		
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+		<title></title>
+	</head>
+	<body>
+		<div id="box">
+			<div class="navbar navbar-default " role="navigation">			    
+			    <ul class="nav navbar-nav">
+					<li><a href="#/vueone">Vue</a></li>
+					<li><a href="#/home">首页</a></li>
+					<li><a href="#/about">关于我们</a></li>
+					<li class="dropdown">
+					<a href="#/hot" data-toggle="dropdown">
+					账户中心<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="#/mm">密码管理</a></li>
+						<li><a>用户中心</a></li>
+					</ul>
+					</li>
+						<li><a href="#/hot">登录</a></li>
+					</ul>
+			</div>
+			<div id="show">
+				<router-view></router-view>
+			</div>
+		</div>	
+		<template id="mm">
+			<div>
+				<router-link to="/mm/opan1"><h1>账号内容</h1></router-link>
+				<router-view></router-view>
+			</div>
+		</template>
+	</body>
+</html>
+<script>
+	const Vueone={template:'<h2>Vue</h2>'}
+	const Home={template:'<h2>首页内容</h2>'};
+	const About={template:'<h2>密码</h2>'};
+	const Mm={template:'#mm'};
+	const Hot={template:'<h2>活动内容</h2>'};
+	//2.定义路由组件的配置（url的锚点路径）
+	const routes=[
+		{path:'/vueone',component:Vueone},
+		{path:'/home',component:Home},
+		{path:'/about',component:About},
+		{
+			path:'/mm',component:Mm,
+			children:[
+				{path:'opan1',component:{template:'<h1>注册内容</h1>'}},
+			]
+		},
+		{path:'/hot',component:Hot},
+		]		
+	//3.把定义好的路由配置，创建一个实例对象
+	const router=new VueRouter({
+		routes//routes:routes
+	})
+	//4.把路由对象跟//对象进行挂载
+	var box=new Vue({
+		el:'#box',
+		data:{},
+		router,
+		// beforeCreate:function(){
+		// 	this.$router.push('/home')
+		// }
+	})
+	router.push('/vueone')
+</script>

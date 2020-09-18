@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue-router.js"></script>
+		<style>
+			li{
+				list-style: none;
+				display: inline-block;
+				padding: 20px;
+			}
+			.show{
+				width: 400px;
+				height: 400px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><router-link :to="{name:'home'}">首页</router-link></li>
+				<li><router-link to="/vip">会员</router-link></li>
+			</ul>
+			<div class="show">
+				<router-view></router-view>
+			</div>
+		</div>
+		<template id="home">
+			<div>
+				<h1>首页</h1>
+			</div>
+		</template>
+		<template id="vip">
+			<div>
+				<h1>会员</h1>
+				<ul>
+					<li><router-link to="/viphot/0">会员活动1</router-link></li>
+					<li><router-link to="/viphot/1">会员活动1</router-link></li>
+				</ul>
+			</div>
+		</template>
+		<template id="viphot">
+			<div>
+				<h1>会员活动</h1>
+				<p>活动标题{{titleArr[$route.params.id]}}</p>
+				<p>传过的内容{{newarr[$route.params.id]}}</p>
+			</div>
+		</template>
+	</body>
+	<script>
+		const Home={template:'#home'}
+		const Vip={template:'#vip'}
+		const Viphot={template:'#viphot',data:function(){
+			return{
+				titleArr:['活动1','活动2'],
+				newarr:['1','2']
+			}
+		}}
+		
+		const routes=[
+				// {path:'/home',component:Home},
+				{path:'/home',name:'home',component:Home},
+				{path:'/vip',component:Vip},
+				{path:'/viphot/:id',component:Viphot},
+				{path:'/',redirect:'/home'}
+			];
+			
+		const router=new VueRouter({
+			routes//routes:routes
+		})
+		let box = new Vue({
+			el:'#box',
+			data:{
+			},
+			router,
+			
+			
+		})
+	</script>
+</html>

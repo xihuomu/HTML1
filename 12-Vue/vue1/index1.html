@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue-router.js"></script>
+		<style>
+			li{
+				list-style: none;
+				display: inline-block;
+				padding: 20px;
+			}
+			#show{
+				width: 400px;
+				height: 400px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><router-link to="/home">首页</router-link></li>
+				<li><router-link to="/vip">会员</router-link></li>
+				<li><router-link to="/hot">活动</router-link></li>
+			</ul>
+			<div id="show">
+				<router-view></router-view>
+			</div>
+		</div>
+	</body>
+	<script>
+		let box = new Vue({
+			el:'#box',
+			data:{
+				
+			},
+			router:new VueRouter({
+				routes:[
+					{
+						path:'/home',
+						component:{template:'<h1>首页内容</h1>'}
+					},
+					{
+						path:'/vip',
+						component:{template:'<h1>VIP内容</h1>'}
+					},
+					
+					{
+						path:'/hot',
+						component:{template:'<h1>活动内容</h1>'}
+					},
+					
+					
+					
+				]
+			})
+			
+		})
+	</script>
+</html>

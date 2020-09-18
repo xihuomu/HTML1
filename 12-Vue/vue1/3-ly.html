@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue-router.js"></script>
+		<style>
+			li{
+				list-style: none;
+				display: inline-block;
+				padding: 20px;
+				color: white;
+				background-color: red;
+				border-radius: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><router-link to="/one">/user/foo/</router-link></li>
+				<li><router-link to="/two">/user/foo/profile</router-link></li>
+				<li><router-link to="/three">/user/foo/posts</router-link></li>
+			</ul>
+			<div id="show">
+				<router-view></router-view>
+			</div>
+		</div>
+		<template id="one">
+			<div>
+				<router-link to="/one/one1"><h1> User foo </h1></router-link>
+				<router-view></router-view>
+			</div>
+		</template>
+		<template id="two">
+			<div>
+				<router-link to="/two/two1"><h1> User foo</h1></router-link>
+				<router-view></router-view>
+			</div>
+		</template>
+		<template id="three">
+			<div>
+				<router-link to="/three/three"><h1> User foo </h1></router-link>
+				<router-view></router-view>
+			</div>
+		</template>
+	</body>
+	<script>
+		const One={template:'#one'};
+		const Two={template:'#two'};
+		const Three={template:'<h2>活动内容</h2>'};
+		const routes=[
+			{path:'/one',component:One,
+				children:[
+					{path:'one1',component:{template:'<h1>Home</h1>'}},
+				]
+			},
+			{path:'/two',component:Two,
+				children:[
+					{path:'two1',component:{template:'<h1>Profile</h1>'}},
+				]
+			},
+			{path:'/three',component:One,
+				children:[
+					{path:'three1',component:{template:'<h1>Posts</h1>'}},
+				]
+			},
+			]		
+		const router=new VueRouter({
+			routes
+		})
+		var box=new Vue({
+			el:'#box',
+			data:{},
+			router,
+		})
+		router.push('/home')
+	</script>
+</html>

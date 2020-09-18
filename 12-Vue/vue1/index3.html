@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue-router.js"></script>
+		<style>
+			li{
+				list-style: none;
+				display: inline-block;
+				padding: 20px;
+			}
+			.show{
+				width: 400px;
+				height: 400px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><router-link to="/home">首页</router-link></li>
+				<li><router-link to="/vip">会员</router-link></li>
+				<li><router-link to="/hot">活动</router-link></li>
+			</ul>
+			<div class="show">
+				<router-view></router-view>
+			</div>
+		</div>
+		<template id="home">
+			<div>
+				<h1>首页内容</h1>
+				<ul>
+					<li>推荐</li>
+					<li>热门</li>
+					<li>个人</li>
+				</ul>
+			</div>
+		</template>
+		<template id="vip">
+			<div>
+				<h1>vip内容</h1>
+				<router-link to="/vip/opan1">注册</router-link>
+				<router-link to="/vip/opan2">续费</router-link>
+				<router-view></router-view>
+			</div>
+		</template>
+	</body>
+	<script>
+		const Home={template:'#home'};
+		const Vip={template:'#vip'};
+		const Hot={template:'<h2>活动内容</h2>'};
+		const routes=[
+				{path:'/home',component:Home},
+				{
+					path:'/vip',component:Vip,
+					children:[
+						{path:'/opan1',component:{template:'<h1>注册内容</h1>'}},
+						{path:'/opan2',component:{template:'<h1>续费内容</h1>'}},
+						// {path:'/',redirect:'opan'}
+						
+					]
+				},
+				{path:'/hot',component:Hot},
+			];
+		const router=new VueRouter({
+			routes//routes:routes
+		})
+		var box=new Vue({
+			el:'#box',
+			data:{},
+			router,
+			beforeCreate:function(){
+				this.$router.push('/home')
+			}
+		})
+	</script>
+</html>

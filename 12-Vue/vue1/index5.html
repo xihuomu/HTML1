@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue-router.js"></script>
+		<style>
+			button{
+				border: 0;
+				background-color: red;
+				color: white;
+				padding: 5px 20px;
+				border-radius: 10px;
+			}
+		
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<button @click="homefn">首页</button>
+			<button @click="listfn">列表</button>
+			<button @click="htfn">后退</button>
+			<router-view></router-view>
+		</div>
+		
+	</body>
+	<script>
+		const Home={template:'<div>首页内容</div>'}
+		const List={template:'<div>列表内容</div>'}
+		
+		const routes=[
+			{path:'/home',name:'home',component:Home},
+			{path:'/list',name:'list',component:List},
+		]
+		
+		const router = new VueRouter({
+			routes
+		})
+		
+		router.push('/home')
+		
+		let box = new Vue({
+			el:'#box',
+			data:{
+			},
+			router,
+			methods:{
+				homefn:function(){
+					this.$router.push('home')//字符串形式
+					// this.$router.push({path:'home'})//对象的路径
+					// this.$router.push({name:'home'})//对象的名字
+					// this.$router.push({name:'home',query:{plan:'aaa'}})//传值query
+				},
+				listfn:function(){
+					this.$router.push('list')
+				},
+				htfn:function(){
+					this.$router.go(-1)
+				}
+			}
+			
+		})
+	</script>
+</html>

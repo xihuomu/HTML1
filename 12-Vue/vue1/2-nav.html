@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+		<script src="js/bootstrap.js"></script>		
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+		<title></title>
+		<style>
+			button{
+				padding: 10px 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div class="navbar navbar-default " role="navigation">			    
+			    <ul class="nav navbar-nav">
+					<li><a href="#/vueone">Vue</a></li>
+					<li><a href="#/home">首页</a></li>
+					<li><a href="#/about">关于我们</a></li>
+					<li><a href="#/dl">登录</a></li>
+				</ul>
+			</div>
+			<button @click="btn1">后退</button>
+			<button @click="btn2">前进</button>
+			<button @click="btn3">后退俩步</button>
+			<button @click="btn4">push关于</button>
+			<button @click="btn5">replace</button>
+			<div id="show">
+				<router-view></router-view>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	const Vueone={template:'<h2>Vue</h2>'}
+	const Home={template:'<h2>首页内容</h2>'};
+	const About={template:'<h2>密码</h2>'};
+	const Dl={template:'<h2>登录内容</h2>'};
+	const routes=[
+		{path:'/vueone',component:Vueone},
+		{path:'/home',component:Home},
+		{path:'/about',component:About},
+		{path:'/dl',component:Dl},
+		]		
+	const router=new VueRouter({
+		routes//routes:routes
+	})
+	var box=new Vue({
+		el:'#box',
+		data:{},
+		router,
+		methods:{
+			btn1(){
+				this.$router.go(-1)
+			},
+			btn2(){
+				this.$router.go(1)
+			},
+			btn3(){
+				this.$router.go(-2)
+			},
+			btn4(){
+				this.$router.push('about')
+			},
+			btn5(){
+				this.$router.replace('vueone')
+			},
+		}
+	})
+	router.push('/vueone')
+</script>

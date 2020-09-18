@@ -71,7 +71,7 @@
 					<li v-for="(item,index) in arr2" style="height: 200px;">
 						<img :src="item.author.avatar_url" style="width: 50px;float: left;">
 						<p style="padding:15px 60px;">{{item.author.loginname}}</p>
-						<p class="right">赞({{item.ups.length}})</p>
+						<p class="right">♥({{item.ups.length}})</p>
 						<div v-html="item.content" style="margin:20px 0px 0 50px;">{{item.content}}</div>
 					</li>
 				</ul>
